@@ -23,7 +23,12 @@ const TypeArea = () => {
           animate-fill-both ${actualState === "FINISHED" ? "hidden" : ""}`}
         onClick={handleDivClick}
       >
-        <input type="text" className="absolute hidden" ref={inputRef} />
+        <input
+          type="text"
+          className="absolute opacity-0"
+          ref={inputRef}
+          aria-hidden="true"
+        />
         <Timer />
         <WordsContainer>
           <RandomWords />
