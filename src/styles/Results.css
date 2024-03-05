@@ -1,0 +1,93 @@
+#result * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#result {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+        "stats chart"
+        "morestats morestats"
+        "buttons buttons"
+        "logininfo logininfo"
+        "add add";
+}
+
+
+#result .stats {
+    grid-area: stats;
+    display: grid; 
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    grid-template-areas:
+        "wpm"
+        "acc";
+}
+
+#result .chart {
+    grid-area: chart;
+    display: grid;
+    gap: 0.5rem;
+}
+
+#result .morestats {
+    grid-area: morestats;
+    
+}
+
+.wpm {
+    grid-area: wpm;
+}
+
+.wpm .top{
+    font-size: 2rem;
+    line-height: 1.5rem;
+    display: flex;
+}
+
+.wpm .bottom{
+    font-size: 4rem;
+    line-height: 4rem;
+}
+
+.acc {
+    grid-area: acc;
+}
+
+.acc .top{
+    font-size: 2rem;
+    line-height: 1.5rem;
+    display: flex;
+}
+
+.acc .bottom{
+    font-size: 4rem;
+    line-height: 4rem;
+}
+
+.buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.logininfo {
+    grid-area: logininfo;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.add {
+    grid-area: add;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    height: 90px;
+}

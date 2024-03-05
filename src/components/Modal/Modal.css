@@ -1,0 +1,79 @@
+body.active-modal {
+    overflow-y: hidden;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+
+    font-size: 18px;
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49, 49, 49, 0.7);
+}
+
+.modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    padding: 14px 28px;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+
+/* animacion para que el modal aparezca desde la derecha de la pantalla (el modal está fixed right-0 entonces
+/* en el keyframes se le da un translate de 300px para que no se vea y luego se le da un translateX(0) para que se vea) */
+@keyframes modalanimation {
+    0% {
+        transform: translateX(200px);
+        opacity: 0.90;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.translated {
+    animation: modalanimation 0.3s ;
+}
+
+
+@keyframes modalOutAnimation {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(382px);
+      opacity: 0.90;
+    }
+  }
+
+.modalOut {
+    animation: modalOutAnimation 0.3s ;
+}
+
+.zindex {
+    z-index: 9999 !important;
+}
