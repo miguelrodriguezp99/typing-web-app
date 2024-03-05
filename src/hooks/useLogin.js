@@ -14,7 +14,7 @@ const useLogin = () => {
 
     try {
       const res = await fetch(
-        `https://miguel-main-server.vercel.app/auth/login`,
+        `https://${process.env.REACT_APP_API_URL}/auth/login`,
         {
           method: "POST",
           headers: {

@@ -10,7 +10,7 @@ const useLogout = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://miguel-main-server.vercel.app/auth/logout`,
+        `https://${process.env.REACT_APP_API_URL}/auth/logout`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

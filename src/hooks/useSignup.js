@@ -25,7 +25,7 @@ const useSignup = () => {
 
     try {
       const res = await fetch(
-        `https://miguel-main-server.vercel.app/auth/signup`,
+        `https://${process.env.REACT_APP_API_URL}/auth/signup`,
         {
           method: "POST",
           headers: {
