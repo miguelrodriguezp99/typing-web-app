@@ -29,10 +29,19 @@ const Footer = () => {
                 <Support props="fill-iconstext w-4 h-4" />
                 <p className="text-iconstext">Support</p>
               </div>
-              <div className="flex flex-row gap-1">
-                <Code props="fill-iconstext w-4 h-4" />
-                <p className="text-iconstext">Github</p>
-              </div>
+
+              <a
+                href="https://github.com/miguelrodriguezp99/typing-web"
+                className="flex flex-row gap-1 group "
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Code props="fill-iconstext w-4 h-4 group-hover:fill-iconstext-hover transition-all duration-300" />
+                <p className="text-iconstext group-hover:text-iconstext-hover transition-all duration-300">
+                  Github
+                </p>
+              </a>
+
               <div className="flex flex-row gap-1">
                 <Discord props="fill-iconstext w-4 h-4" />
                 <p className="text-iconstext">Discord</p>
