@@ -59,11 +59,11 @@ export default function NotificationModal() {
             className={`bg-[#0d0d0e] zindex bg-opacity-80 w-full h-full top-0 left-0 right-0 bottom-0 fixed ${backgroundClass}`}
           ></div>
           <div
-            className={`fixed bg-primary w-[382px] right-0 h-screen top-0 rounded-l-xl ${animationClass} zindex`}
+            className={`fixed bg-primary w-[300px] sm:w-[382px] right-0 h-screen top-0 rounded-l-xl ${animationClass} zindex`}
           >
             <section className="bg-primary cursor-pointer rounded-xl px-10 py-6">
               <h2 className="text-2xl mb-5 text-iconstext flex gap-3 items-center justify-start">
-                <Announcement props="fill-iconstext w-6 h-6 " />
+                <Announcement props="fill-iconstext sm:w-6 sm:h-6 " />
                 Announcements
               </h2>
               <div className="flex items-center mx-auto p-3 justify-center align-center">

@@ -6,7 +6,7 @@ import useMouseOut from "./../../hooks/useMouseOut";
 import TypeArea from "./../../components/TypeArea";
 import Options from "./../../components/Header/Options";
 import useMobileOptions from "../../hooks/useMobileOptions";
-import MobileOptions from "../../components/Header/MobileOptions";
+import MobileOptions from "../../components/Modal/MobileOptions";
 
 function App() {
   const { setWords } = useWordsStore();

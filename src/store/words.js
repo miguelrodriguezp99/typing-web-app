@@ -8,6 +8,20 @@ export const APP_STATE = {
   FINISHED: "FINISHED",
 };
 
+export const PUNCTUATION_MODE = {
+  PUNCTUATION: "PUNCTUATION",
+  NUMBERS: "NUMBERS",
+  DISABLED: "DISABLED",
+};
+
+export const GAME_MODE = {
+  WORDS: "WORDS",
+  TIME: "TIME",
+  QUOTE: "QUOTE",
+  ZEN: "ZEN",
+  CUSTOM: "CUSTOM",
+};
+
 export const useWordsStore = create((set, get) => ({
   numberOfWords: 30,
   words: null,
@@ -16,6 +30,8 @@ export const useWordsStore = create((set, get) => ({
   errors: 0,
   typed: "",
   isFocused: true,
+  punctuation: PUNCTUATION_MODE.PUNCTUATION,
+  game_mode: GAME_MODE.WORDS,
 
   setNumberOfWords: (count) => {
     set({ numberOfWords: count });
