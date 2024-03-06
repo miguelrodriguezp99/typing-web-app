@@ -16,6 +16,7 @@ const useGameEnd = () => {
     setTimeRemaining,
     timeSelected,
     incrementWords,
+    setNumberOfWords,
   } = useWordsStore();
 
   /* ------------------ LOGICA DEL TIMER Y DEL ESTADO ----------------------------- */
@@ -66,6 +67,13 @@ const useGameEnd = () => {
       incrementWords();
     }
   }, [cursor, words, gameMode, setTyped, incrementWords]);
+
+  // GAMEMODE = TIME THEN SET NUMBER OF WORDS TO 75
+  useEffect(() => {
+    if (gameMode === GAME_MODE.TIME) {
+      setNumberOfWords(75);
+    }
+  }, [gameMode, setNumberOfWords]);
 
   return { hasFinished };
 };
