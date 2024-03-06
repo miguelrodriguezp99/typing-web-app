@@ -14,7 +14,7 @@ const BlurEffect = () => {
         id="blur-effect"
         className={`absolute inset-0 text-primary transition-all duration-300 delay-150 ${
           !isFocused ? "" : "hidden "
-        }  z-50`}
+        } `}
         onClick={(e) => handleSetFocusedTrue(e)}
       >
         <div className="inset-0 text-primary opacity-85 grid items-center ">
