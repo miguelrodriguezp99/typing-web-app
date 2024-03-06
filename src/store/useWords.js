@@ -1,37 +1,20 @@
 import { create } from "zustand";
 import { generate } from "random-words";
 import { calculateErrors } from "../utils/helpers";
-
-export const APP_STATE = {
-  STOPPED: "STOPPED",
-  RUNNING: "RUNNING",
-  FINISHED: "FINISHED",
-};
-
-export const PUNCTUATION_MODE = {
-  PUNCTUATION: "PUNCTUATION",
-  NUMBERS: "NUMBERS",
-  DISABLED: "DISABLED",
-};
-
-export const GAME_MODE = {
-  WORDS: "WORDS",
-  TIME: "TIME",
-  QUOTE: "QUOTE",
-  ZEN: "ZEN",
-  CUSTOM: "CUSTOM",
-};
+import { APP_STATE, PUNCTUATION_MODE, GAME_MODE } from "../utils/constants";
 
 export const useWordsStore = create((set, get) => ({
   numberOfWords: 30,
   words: null,
   actualState: APP_STATE.STOPPED,
-  time: 15,
+  timeSelected: 15,
+  timeRemaining: 15,
   errors: 0,
   typed: "",
   isFocused: true,
   punctuation: PUNCTUATION_MODE.PUNCTUATION,
-  game_mode: GAME_MODE.WORDS,
+  gameMode: GAME_MODE.TIME,
+  cursor: 0,
 
   setNumberOfWords: (count) => {
     set({ numberOfWords: count });
@@ -46,8 +29,8 @@ export const useWordsStore = create((set, get) => ({
     set({ actualState: state });
   },
 
-  setTime: (time) => {
-    set({ time: time });
+  setTimeSelected: (time) => {
+    set({ timeSelected: time });
   },
 
   setErrors: (errors) => {
@@ -84,8 +67,9 @@ export const useWordsStore = create((set, get) => ({
     set({ inputs: 0 });
     set({ corrects: 0 });
     set({ errors: 0 });
-    get().restartTyped();
+    set({ cursor: 0 });
     get().setWords();
+    get().restartTyped();
     get().stopState();
   },
 
@@ -110,5 +94,28 @@ export const useWordsStore = create((set, get) => ({
 
   setFocusedFalse: () => {
     set({ isFocused: false });
+  },
+
+  setGameMode: (mode) => {
+    set({ gameMode: mode });
+    get().restart();
+  },
+
+  /* ---- CURSOR ---- */
+  incrementCursor: () => {
+    set({ cursor: get().cursor + 1 });
+  },
+
+  decrementCursor: () => {
+    set({ cursor: get().cursor - 1 });
+  },
+
+  restartCursor: () => {
+    set({ cursor: 0 });
+  },
+
+  /* ---- TIMER ---- */
+  setTimeRemaining: (time) => {
+    set({ timeRemaining: time });
   },
 }));

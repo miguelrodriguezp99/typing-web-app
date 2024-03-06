@@ -46,10 +46,20 @@ const Footer = () => {
                 <Discord props="fill-iconstext w-4 h-4" />
                 <p className="text-iconstext">Discord</p>
               </div>
-              <div className="flex flex-row gap-1">
-                <X props="fill-iconstext w-3.5 h-3.5 mt-0.1" />
-                <p className="text-iconstext">Twitter</p>
-              </div>
+              <a
+                href="https://twitter.com/miguelrguez99"
+                className="flex flex-row gap-1 group"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <X
+                  props="fill-iconstext w-3.5 h-3.5 mt-0.1 group-hover:fill-iconstext-hover transition-all duration-300"
+                  color="fill-iconstext group-hover:fill-iconstext-hover"
+                />
+                <p className="text-iconstext group-hover:text-iconstext-hover transition-all duration-300">
+                  Twitter
+                </p>
+              </a>
             </div>
 
             <section className="flex flex-wrap gap-3 mt-2 right-0 justify-end">

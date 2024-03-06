@@ -1,5 +1,5 @@
 import { Cursor } from "../assets/icons/ResultsIcon";
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 
 const BlurEffect = () => {
   const { isFocused, setFocusedTrue } = useWordsStore();

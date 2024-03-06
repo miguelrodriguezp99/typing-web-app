@@ -1,4 +1,4 @@
-import { useWordsStore } from "../../store/words";
+import { useWordsStore } from "../../store/useWords";
 import {
   Crown,
   Info,
@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import useLogout from "../../hooks/useLogout";
-import { toast } from "sonner";
 
 const Header = () => {
   const { authUser } = useAuthContext();

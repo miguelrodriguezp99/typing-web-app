@@ -70,16 +70,16 @@ export default function SoundModal() {
       <div className="flex flex-row gap-1 justify-center text-center items-center">
         {muted ? (
           <button onClick={handleToggleMute} className="select-none">
-            <VolumeSilence props="fill-iconstext w-4 h-4 hover:fill-iconstext-hover transition-all duration-200" />
+            <VolumeSilence props="fill-iconstext w-4 h-4 hover:fill-iconstext-hover transition-all duration-300" />
           </button>
         ) : (
           <button onClick={handleToggleMute} className="select-none ">
-            <Volume props="fill-iconstext w-4 h-4 hover:fill-iconstext-hover transition-all duration-200" />
+            <Volume props="fill-iconstext w-4 h-4 hover:fill-iconstext-hover transition-all duration-300" />
           </button>
         )}
 
         <button onClick={toggleModal} className="p-3 group">
-          <p className="text-iconstext hover:text-iconstext-hover">
+          <p className="text-iconstext hover:text-iconstext-hover transition-all duration-300">
             {actualNameSong}
           </p>
         </button>
@@ -93,24 +93,27 @@ export default function SoundModal() {
             onClick={toggleModal}
             className="bg-[#313131b3] opacity-75 w-full h-full top-0 left-0 right-0 bottom-0 fixed animate-none transition-none"
           ></div>
-          <div className="modal-content bg-primary cursor-pointer rounded-xl text-secondary">
+          <div className="modal-content bg-[#1a1919] rounded-xl text-secondary">
             <h2 className="mb-5">Select your sound!</h2>
-            <div className="flex flex-col">
+            <div className="flex flex-col cursor-pointer">
               <button
                 onClick={switchSound(SOUND_MAP["cherry"])}
-                className="text-iconstext hover:text-secondary-hover"
+                className="py-1 hover:bg-tertiary rounded-md text-iconstext 
+                hover:text-secondary-hover transition-all duration-300"
               >
                 cherry
               </button>
               <button
                 onClick={switchSound(SOUND_MAP["typewriter"])}
-                className="text-iconstext hover:text-secondary-hover"
+                className="py-1 hover:bg-tertiary rounded-md text-iconstext 
+                hover:text-secondary-hover transition-all duration-300"
               >
                 typewriter
               </button>
               <button
                 onClick={switchSound(SOUND_MAP["keyboard"])}
-                className="text-iconstext hover:text-secondary-hover"
+                className="py-1 hover:bg-tertiary rounded-md text-iconstext 
+                hover:text-secondary-hover transition-all duration-300"
               >
                 keyboard
               </button>

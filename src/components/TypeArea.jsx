@@ -3,7 +3,7 @@ import Timer from "./Timer";
 import RandomWords from "./RandomWords";
 import UserWords from "./UserWords";
 import BlurEffect from "./BlurEffect";
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 import "./../styles/blur.css";
 
 const TypeArea = () => {
@@ -12,6 +12,7 @@ const TypeArea = () => {
   const handleDivClick = () => {
     if (inputRef?.current !== null) inputRef.current?.focus(); // Enfoca el campo de entrada para abrir el teclado
   };
+
   return (
     <>
       <div

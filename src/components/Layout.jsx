@@ -1,5 +1,5 @@
 import React from "react";
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 import Header from "./Header/Header";
 import Footer from "./Footer";
 import { Toaster } from "sonner";

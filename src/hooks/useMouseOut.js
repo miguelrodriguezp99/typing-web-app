@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 
 const useMouseOut = () => {
   const [mouseOut, setMouseOut] = useState(false);

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Modal.css";
 import { Palette } from "../../assets/icons/FooterIcons";
+import Theme from "../Theme";
 export default function ThemeModal() {
   const [modal, setModal] = useState(false);
   const [oldTheme, setOldTheme] = useState("dark");
@@ -86,8 +87,8 @@ export default function ThemeModal() {
     <>
       <button onClick={toggleModal} className="p-3">
         <div className="flex flex-row gap-1 justify-center text-center items-center group">
-          <Palette props="w-5 h-5 fill-iconstext group-hover:fill-iconstext-hover" />
-          <p className="text-iconstext group-hover:text-iconstext-hover">
+          <Palette props="w-5 h-5 fill-iconstext group-hover:fill-iconstext-hover transition-all duration-300" />
+          <p className="text-iconstext group-hover:text-iconstext-hover transition-all duration-300">
             {currentTheme}
           </p>
         </div>
@@ -95,56 +96,46 @@ export default function ThemeModal() {
 
       {modal && (
         <div
-          className={`w-full h-full top-0 left-0 right-0 bottom-0 fixed
+          className={`w-full h-full top-0 left-0 right-0 bottom-0 fixed zindex
         ${animationClass}`}
         >
           <div
             onClick={toggleModal}
             className="bg-[#313131b3] opacity-75 w-full h-full top-0 left-0 right-0 bottom-0 fixed"
           ></div>
-          <div className="modal-content bg-primary cursor-pointer rounded-xl text-secondary">
+          <div className="modal-content bg-[#1a1919]  rounded-xl text-secondary zmodal">
             <h2 className="mb-5">Select your theme!</h2>
-            <div className="flex flex-col">
-              <button
-                onClick={switchTheme("dark")}
-                onMouseEnter={() => mouseEnter("dark")}
-                onMouseLeave={() => mouseLeave("dark")}
-                className="text-iconstext hover:text-secondary-hover"
-              >
-                dark
-              </button>
-              <button
-                onClick={switchTheme("light")}
-                onMouseEnter={() => mouseEnter("light")}
-                onMouseLeave={() => mouseLeave("light")}
-                className="text-iconstext hover:text-secondary-hover"
-              >
-                light
-              </button>
-              <button
-                onClick={switchTheme("vscode")}
-                onMouseEnter={() => mouseEnter("vscode")}
-                onMouseLeave={() => mouseLeave("vscode")}
-                className="text-iconstext hover:text-secondary-hover"
-              >
-                vscode
-              </button>
-              <button
-                onClick={switchTheme("trance")}
-                onMouseEnter={() => mouseEnter("trance")}
-                onMouseLeave={() => mouseLeave("trance")}
-                className="text-iconstext hover:text-secondary-hover"
-              >
-                trance
-              </button>
-              <button
-                onClick={switchTheme("eva")}
-                onMouseEnter={() => mouseEnter("eva")}
-                onMouseLeave={() => mouseLeave("eva")}
-                className="text-iconstext hover:text-secondary-hover"
-              >
-                eva-04
-              </button>
+            <div className="flex flex-col gap-2 cursor-pointer">
+              <Theme
+                themeName="dark"
+                switchTheme={switchTheme}
+                mouseEnter={mouseEnter}
+                mouseLeave={mouseLeave}
+              />
+              <Theme
+                themeName="light"
+                switchTheme={switchTheme}
+                mouseEnter={mouseEnter}
+                mouseLeave={mouseLeave}
+              />
+              <Theme
+                themeName="vscode"
+                switchTheme={switchTheme}
+                mouseEnter={mouseEnter}
+                mouseLeave={mouseLeave}
+              />
+              <Theme
+                themeName="trance"
+                switchTheme={switchTheme}
+                mouseEnter={mouseEnter}
+                mouseLeave={mouseLeave}
+              />
+              <Theme
+                themeName="eva-04"
+                switchTheme={switchTheme}
+                mouseEnter={mouseEnter}
+                mouseLeave={mouseLeave}
+              />
             </div>
           </div>
         </div>

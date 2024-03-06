@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import "./Modal.css";
-import { useWordsStore } from "../../store/words";
+import { useWordsStore } from "../../store/useWords";
 import { Settings } from "../../assets/icons/HeaderIcons";
 
 export default function SoundModal() {

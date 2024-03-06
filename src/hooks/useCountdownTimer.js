@@ -1,39 +1,31 @@
-import { useEffect, useState } from "react";
-import { useWordsStore } from "../store/words";
+import { useEffect } from "react";
+import { useWordsStore } from "../store/useWords";
+import { GAME_MODE } from "../utils/constants";
 
 const useCountdownTimer = () => {
-  const { time, actualState, finishedState } = useWordsStore();
-  const [timeLeft, setTimeLeft] = useState(time);
+  const {
+    actualState,
+    finishedState,
+    gameMode,
+    timeRemaining,
+    setTimeRemaining,
+  } = useWordsStore();
 
   //Time countdown every second
   useEffect(() => {
-    if (actualState === "RUNNING") {
+    if (actualState === "RUNNING" && gameMode === GAME_MODE.TIME) {
       const timer =
-        timeLeft > 0 &&
+        timeRemaining > 0 &&
         actualState === "RUNNING" &&
-        setInterval(() => setTimeLeft(timeLeft - 1), 1000);
+        setInterval(() => setTimeRemaining(timeRemaining - 1), 1000);
 
       return () => {
         clearInterval(timer);
       };
     }
-  }, [timeLeft, actualState, finishedState]);
+  }, [actualState, finishedState, gameMode, timeRemaining, setTimeRemaining]);
 
-  /* When timer reachs 0, change state to finished */
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      finishedState();
-    }
-  }, [timeLeft, finishedState]);
-
-  // When state changes to finished, reset timeLeft
-  useEffect(() => {
-    if (actualState === "STOPPED") {
-      setTimeLeft(time);
-    }
-  }, [actualState, time]);
-
-  return { timeLeft };
+  return { timeRemaining };
 };
 
 export default useCountdownTimer;

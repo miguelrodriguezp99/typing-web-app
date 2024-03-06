@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 import Caret from "./Caret";
 import cn from "classnames";
 import useTranslate from "../hooks/useTranslate";

@@ -1,4 +1,4 @@
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 import "../styles/Caret.css";
 
 const Caret = () => {

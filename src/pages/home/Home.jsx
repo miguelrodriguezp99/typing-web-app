@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import useTyping from "./../../hooks/useTyping";
-import { useWordsStore } from "./../../store/words";
+import { useWordsStore } from "../../store/useWords";
 import Results from "./../../components/Results";
 import useMouseOut from "./../../hooks/useMouseOut";
 import TypeArea from "./../../components/TypeArea";
-import Options from "./../../components/Header/Options";
+import Options from "../../components/GameModeOptions/Options";
 import useMobileOptions from "../../hooks/useMobileOptions";
 import MobileOptions from "../../components/Modal/MobileOptions";
+import useGameEnd from "../../hooks/useGameEnd";
 
 function App() {
   const { setWords } = useWordsStore();
@@ -16,6 +17,9 @@ function App() {
 
   //Start typing action
   useTyping();
+
+  //useGameEnd
+  useGameEnd();
 
   //Hook to change UI if mobile or not
   const { isMobile } = useMobileOptions();

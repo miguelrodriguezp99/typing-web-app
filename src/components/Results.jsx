@@ -1,4 +1,4 @@
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 import cn from "classnames";
 import {
   Ad,

@@ -1,4 +1,4 @@
-import { useWordsStore } from "../store/words";
+import { useWordsStore } from "../store/useWords";
 import useTranslate from "../hooks/useTranslate";
 import { useRef } from "react";
 import "./../styles/blur.css";
