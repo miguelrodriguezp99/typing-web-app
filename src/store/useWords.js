@@ -30,6 +30,13 @@ export const useWordsStore = create((set, get) => ({
     set({ words: generate(get().numberOfWords).join(" ") });
   },
 
+  incrementWords: () => {
+    const newWords = generate(30).join(" ");
+    set({
+      words: get().words + " " + newWords,
+    });
+  },
+
   setAppState: (state) => {
     set({ actualState: state });
   },

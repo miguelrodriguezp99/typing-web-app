@@ -15,6 +15,7 @@ const useGameEnd = () => {
     timeRemaining,
     setTimeRemaining,
     timeSelected,
+    incrementWords,
   } = useWordsStore();
 
   /* ------------------ LOGICA DEL TIMER Y DEL ESTADO ----------------------------- */
@@ -58,6 +59,15 @@ const useGameEnd = () => {
       runState();
     }
   }, [cursor, actualState, runState]);
+
+  //Añadimos palabras al array si el gamemode es tiempo y el cursor está cerca de llegar al final de la longitud del array
+  useEffect(() => {
+    if (gameMode === GAME_MODE.TIME && cursor >= words?.length - 180) {
+      incrementWords();
+    }
+  }, [cursor, words, gameMode, setTyped, incrementWords]);
+
+  return { hasFinished };
 };
 
 export default useGameEnd;

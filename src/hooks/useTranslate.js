@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useWordsStore } from "../store/useWords";
+import { GAME_MODE } from "../utils/constants";
 
 const BASE_WIDTH = 1152; // Ancho base del contenedor para 82 letras
-const BASE_OFFSET = 82; // Número base de letras por fila
+const BASE_OFFSET = 80; // Número base de letras por fila
 // Número base de letras por fila
 
 const useTranslate = (divRef) => {
   const [translateY, setTranslateY] = useState(0);
-  const { typed, numberOfWords, actualState, words } = useWordsStore();
+  const { typed, numberOfWords, actualState, words, gameMode } =
+    useWordsStore();
 
   const [offset, setOffset] = useState(BASE_OFFSET);
   const [maxIndex, setMaxIndex] = useState(offset * 2); // Inicialmente para dos filas
@@ -49,13 +51,21 @@ const useTranslate = (divRef) => {
   }, [width, divRef, maxIndex]);
 
   useEffect(() => {
-    if (numberOfWords < 60) return;
+    if (numberOfWords < 60 && gameMode === GAME_MODE.WORDS) return;
     //Translado solo si quedan mas de dos lineas de diferencia con el bottom
     if (typed.length >= maxIndex && words.length - maxIndex >= 166) {
       setMaxIndex(maxIndex + offset);
       setTranslateY(translateY - 40);
     }
-  }, [numberOfWords, typed.length, translateY, maxIndex, offset, words]);
+  }, [
+    numberOfWords,
+    typed.length,
+    translateY,
+    maxIndex,
+    offset,
+    words,
+    gameMode,
+  ]);
 
   //Reiniciar el trasnlate
   useEffect(() => {

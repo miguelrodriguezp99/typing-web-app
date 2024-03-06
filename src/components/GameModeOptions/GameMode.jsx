@@ -23,7 +23,7 @@ const GameMode = () => {
     setGameMode(mode);
 
     if (mode === GAME_MODE.TIME) {
-      setNumberOfWords(60);
+      setNumberOfWords(75);
       setPreviousWords(numberOfWords);
     }
 
