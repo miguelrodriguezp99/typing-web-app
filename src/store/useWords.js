@@ -15,6 +15,11 @@ export const useWordsStore = create((set, get) => ({
   punctuation: PUNCTUATION_MODE.PUNCTUATION,
   gameMode: GAME_MODE.TIME,
   cursor: 0,
+  previousWords: 15,
+
+  setPreviousWords: (words) => {
+    set({ previousWords: words });
+  },
 
   setNumberOfWords: (count) => {
     set({ numberOfWords: count });

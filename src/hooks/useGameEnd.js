@@ -22,10 +22,10 @@ const useGameEnd = () => {
   /* ---- HAS FINISHED ---- */
   const hasFinished = useMemo(() => {
     if (gameMode === GAME_MODE.WORDS) {
-      return cursor >= (words?.length || 0);
+      return cursor >= words?.length;
     }
     if (gameMode === GAME_MODE.TIME) {
-      return cursor >= (words?.length || 0) || timeRemaining <= 0;
+      return cursor >= words?.length || timeRemaining <= 0;
     }
     // Por defecto, consideramos que no ha terminado
     return false;
@@ -34,6 +34,7 @@ const useGameEnd = () => {
   /* Si terminamos de escribir entonces paramos */
   useEffect(() => {
     if (hasFinished) {
+      console.log("hasFinished");
       finishedState();
     }
   }, [hasFinished, runState, finishedState]);

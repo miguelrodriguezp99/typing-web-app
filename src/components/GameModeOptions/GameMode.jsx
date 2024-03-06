@@ -10,10 +10,26 @@ import {
 import { GAME_MODE } from "../../utils/constants";
 
 const GameMode = () => {
-  const { gameMode, setGameMode } = useWordsStore();
+  const {
+    gameMode,
+    numberOfWords,
+    setGameMode,
+    setNumberOfWords,
+    previousWords,
+    setPreviousWords,
+  } = useWordsStore();
 
   const handleChangeMode = (mode) => {
     setGameMode(mode);
+
+    if (mode === GAME_MODE.TIME) {
+      setNumberOfWords(60);
+      setPreviousWords(numberOfWords);
+    }
+
+    if (mode === GAME_MODE.WORDS) {
+      setNumberOfWords(previousWords);
+    }
   };
 
   return (
