@@ -52,7 +52,7 @@ export const BlurWrapper = ({ children }) => {
       className="bg-primary tracking-wider font-mono md:px-10 
       sm:px-5 px-2 mx-auto 
       lg:max-w-[1310px] 
-      h-[calc(100vh-236px)] sm:h-[calc(100vh-192px)] sm:min-h-[630px] "
+      h-[calc(100vh-236px)] sm:h-[calc(100vh-192px)] sm:min-h-[520px] "
       onClick={(e) => handleSetFocusedTrue(e)}
     >
       {children}
