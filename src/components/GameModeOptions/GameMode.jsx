@@ -24,7 +24,8 @@ const GameMode = () => {
 "
     >
       <div
-        className={`group flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 ${
+        className={`group flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 
+        ${
           gameMode === GAME_MODE.TIME
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"

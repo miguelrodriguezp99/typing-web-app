@@ -2,16 +2,19 @@ import { useCallback, useState } from "react";
 import { useWordsStore } from "../../store/useWords";
 import { Settings } from "../../assets/icons/HeaderIcons";
 import "./../Modal/Modal.css";
-import { GAME_MODE } from "../../utils/constants";
+import { GAME_MODE, PUNCTUATION_MODE } from "../../utils/constants";
 import useGameModeOpts from "../../hooks/useGameModeOpts";
 import MobileTimeOptions from "./MobileTimeOptions";
 import MobileWordsOptions from "./MobileWordsOptions";
+import useGamePunctuationMode from "../../hooks/useGamePunctuationMode";
 
 export default function SoundModal() {
   const [modal, setModal] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
   const { punctuation, gameMode, time, numberOfWords } = useWordsStore();
   const { handleChangeGameMode } = useGameModeOpts();
+  const { handleChangePunctuationMode, handleChangeNumbersMode } =
+    useGamePunctuationMode();
 
   const closeModal = useCallback(() => {
     setAnimationClass("");
@@ -70,8 +73,11 @@ export default function SoundModal() {
                 className="flex flex-col w-full gap-2"
               >
                 <button
+                  onClick={() =>
+                    handleChangePunctuationMode(PUNCTUATION_MODE.PUNCTUATION)
+                  }
                   className={`mobile-modal-button ${
-                    punctuation === "PUNCTUATION"
+                    punctuation === PUNCTUATION_MODE.PUNCTUATION
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
@@ -79,8 +85,11 @@ export default function SoundModal() {
                   punctuation
                 </button>
                 <button
+                  onClick={() =>
+                    handleChangeNumbersMode(PUNCTUATION_MODE.PUNCTUATION)
+                  }
                   className={`mobile-modal-button ${
-                    punctuation === "NUMBERS"
+                    punctuation === PUNCTUATION_MODE.NUMBERS
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
