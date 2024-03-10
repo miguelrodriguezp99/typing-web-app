@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { GAME_MODE } from "./constants";
 
 export const isKeyboardCodeAllowed = (code: string) => {
@@ -10,9 +9,6 @@ export const isKeyboardCodeAllowed = (code: string) => {
     );
 };
 
-export const GenerateWords = (numberOfWords: number) => {
-    return faker.word.words(numberOfWords);
-}
 
 export const calculateErrors = (userWords: string, words: string) => {
     let errors = 0;
