@@ -23,7 +23,7 @@ const Results = () => {
     restart,
     typed,
     wpm,
-    kps,
+    acc,
     timeResult,
     gameMode,
     numberOfWords,
@@ -101,8 +101,8 @@ const Results = () => {
               <div className="text-6xl text-secondary">{wpm}</div>
             </div>
             <div className="">
-              <div className="text-3xl text-iconstext">kps</div>
-              <div className="text-6xl text-secondary">{kps}</div>
+              <div className="text-3xl text-iconstext">acc</div>
+              <div className="text-6xl text-secondary">{acc}%</div>
             </div>
           </div>
           <ChartComp />

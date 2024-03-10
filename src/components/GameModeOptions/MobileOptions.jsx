@@ -1,12 +1,17 @@
 import { useCallback, useState } from "react";
-import "./Modal.css";
 import { useWordsStore } from "../../store/useWords";
 import { Settings } from "../../assets/icons/HeaderIcons";
+import "./../Modal/Modal.css";
+import { GAME_MODE } from "../../utils/constants";
+import useGameModeOpts from "../../hooks/useGameModeOpts";
+import MobileTimeOptions from "./MobileTimeOptions";
+import MobileWordsOptions from "./MobileWordsOptions";
 
 export default function SoundModal() {
   const [modal, setModal] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
-  const { punctuation, game_mode, time } = useWordsStore();
+  const { punctuation, gameMode, time, numberOfWords } = useWordsStore();
+  const { handleChangeGameMode } = useGameModeOpts();
 
   const closeModal = useCallback(() => {
     setAnimationClass("");
@@ -86,8 +91,9 @@ export default function SoundModal() {
 
               <div id="#options" className="flex flex-col gap-2">
                 <button
+                  onClick={() => handleChangeGameMode(GAME_MODE.TIME)}
                   className={`mobile-modal-button ${
-                    game_mode === "WORDS"
+                    gameMode === GAME_MODE.TIME
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
@@ -95,17 +101,18 @@ export default function SoundModal() {
                   time
                 </button>
                 <button
+                  onClick={() => handleChangeGameMode(GAME_MODE.WORDS)}
                   className={`mobile-modal-button ${
-                    game_mode === "NUMBERS"
+                    gameMode === GAME_MODE.WORDS
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
                 >
-                  numbers
+                  words
                 </button>
                 <button
                   className={`mobile-modal-button ${
-                    game_mode === "QUOTE"
+                    gameMode === GAME_MODE.QUOTE
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
@@ -114,7 +121,7 @@ export default function SoundModal() {
                 </button>
                 <button
                   className={`mobile-modal-button ${
-                    game_mode === "ZEN"
+                    gameMode === GAME_MODE.ZEN
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
@@ -123,7 +130,7 @@ export default function SoundModal() {
                 </button>
                 <button
                   className={`mobile-modal-button ${
-                    game_mode === "CUSTOM"
+                    gameMode === GAME_MODE.CUSTOM
                       ? "bg-secondary text-tertiary"
                       : "bg-tertiary text-iconstext"
                   }`}
@@ -132,53 +139,10 @@ export default function SoundModal() {
                 </button>
               </div>
 
-              <div id="#second-options" className="flex flex-col gap-2">
-                <button
-                  className={`mobile-modal-button ${
-                    time === 15
-                      ? "bg-secondary text-tertiary"
-                      : "bg-tertiary text-iconstext"
-                  } `}
-                >
-                  15
-                </button>
-                <button
-                  className={`mobile-modal-button ${
-                    time === 30
-                      ? "bg-secondary text-tertiary"
-                      : "bg-tertiary text-iconstext"
-                  }`}
-                >
-                  25
-                </button>
-                <button
-                  className={`mobile-modal-button ${
-                    time === 60
-                      ? "bg-secondary text-tertiary"
-                      : "bg-tertiary text-iconstext"
-                  }`}
-                >
-                  60
-                </button>
-                <button
-                  className={`mobile-modal-button ${
-                    time === 100
-                      ? "bg-secondary text-tertiary"
-                      : "bg-tertiary text-iconstext"
-                  }`}
-                >
-                  100
-                </button>
-                <button
-                  className={`mobile-modal-button ${
-                    time === "CUSTOM"
-                      ? "bg-secondary text-tertiary"
-                      : "bg-tertiary text-iconstext"
-                  }`}
-                >
-                  custom
-                </button>
-              </div>
+              {gameMode === GAME_MODE.TIME && <MobileTimeOptions time={time} />}
+              {gameMode === GAME_MODE.WORDS && (
+                <MobileWordsOptions numberOfWords={numberOfWords} />
+              )}
             </div>
           </div>
         </div>

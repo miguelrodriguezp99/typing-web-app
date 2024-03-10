@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { generate } from "random-words";
-import { calculateErrors } from "../utils/helpers";
+import {
+  calculateErrors,
+  calculatekpsandWPM,
+  calculateAccuracy,
+} from "../utils/helpers";
 import { APP_STATE, PUNCTUATION_MODE, GAME_MODE } from "../utils/constants";
 
 export const useWordsStore = create((set, get) => ({
@@ -20,6 +24,7 @@ export const useWordsStore = create((set, get) => ({
   previousWords: 15,
   kps: 0,
   wpm: 0,
+  accuaracy: 0,
 
   setPreviousWords: (words) => {
     set({ previousWords: words });
@@ -148,30 +153,15 @@ export const useWordsStore = create((set, get) => ({
 
   /* ---- PUNCTUATION ---- */
   calculateResults: () => {
-    // Calcular kps y WPM
-    const calculatekpsandWPM = (typedLength, timeUsed, words) => {
-      const kps = Math.ceil((typedLength / timeUsed) * 60);
-      let averageWordLength;
-      if (words) {
-        const totalLength = words
-          .split(" ")
-          .reduce((total, word) => total + word.length, 0);
-        const wordCount = words.split(" ").length;
-        averageWordLength = totalLength / wordCount; // Calcula la longitud promedio de las palabras dinámicamente
-      } else {
-        averageWordLength = 5; // O usa 5 si no hay datos suficientes
-      }
-      const wpm = Math.ceil(typedLength / averageWordLength / (timeUsed / 60));
-      return { kps, wpm };
-    };
-
     if (get().gameMode === GAME_MODE.WORDS) {
       const { typed, timeUsed, words } = get();
+
       get().setErrors(calculateErrors(typed, words));
       const { kps, wpm } = calculatekpsandWPM(typed.length, timeUsed, words);
       const timeResult = get().timeUsed;
-      set({ kps, wpm, timeResult });
       get().setErrors(calculateErrors(get().typed, get().words));
+      const acc = calculateAccuracy(typed, get().errors);
+      set({ kps, wpm, timeResult, acc });
     }
 
     if (get().gameMode === GAME_MODE.TIME) {
@@ -182,9 +172,11 @@ export const useWordsStore = create((set, get) => ({
         timeSelected,
         words
       );
+
       const timeResult = get().timeSelected;
-      set({ kps, wpm, timeResult });
       get().setErrors(calculateErrors(get().typed, get().words));
+      const acc = calculateAccuracy(typed, get().errors);
+      set({ kps, wpm, timeResult, acc });
     }
   },
 }));

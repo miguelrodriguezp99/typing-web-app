@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Timer from "./Timer";
 import RandomWords from "./RandomWords";
 import UserWords from "./UserWords";
 import BlurEffect from "./BlurEffect";
 import { useWordsStore } from "../store/useWords";
 import "./../styles/blur.css";
-import useTyping from "../hooks/useTyping";
 
 const TypeArea = () => {
   const { actualState } = useWordsStore();
@@ -13,26 +12,6 @@ const TypeArea = () => {
   const handleDivClick = () => {
     if (inputRef?.current !== null) inputRef.current?.focus(); // Enfoca el campo de entrada para abrir el teclado
   };
-
-  // Test for android keyboard
-  const { keyDownHandler } = useTyping();
-
-  useEffect(() => {
-    // Asegúrate de que el input existe
-    const element = inputRef.current;
-    if (!element) return;
-
-    if (actualState === "FINISHED") {
-      element.removeEventListener("keydown", keyDownHandler);
-    } else {
-      element.addEventListener("keydown", keyDownHandler);
-    }
-
-    return () => {
-      element.removeEventListener("keydown", keyDownHandler);
-    };
-  }, [keyDownHandler, actualState, inputRef]);
-  // -----------------------------
 
   return (
     <>
@@ -47,9 +26,9 @@ const TypeArea = () => {
       >
         <input
           type="text"
-          className="absolute opacity-0"
+          className="absolute opacity-5 h-[1px] w-[1px] left-[-10000px]"
           ref={inputRef}
-          aria-hidden="true"
+          aria-hidden="false"
         />
         <Timer />
         <WordsContainer>

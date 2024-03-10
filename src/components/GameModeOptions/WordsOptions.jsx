@@ -1,15 +1,10 @@
+import useGameModeOpts from "../../hooks/useGameModeOpts";
 import { useWordsStore } from "../../store/useWords";
 
 const WordsOptions = () => {
-  const { numberOfWords, setNumberOfWords, restart, restartTyped } =
-    useWordsStore();
+  const { numberOfWords } = useWordsStore();
 
-  const handleWordsChange = (count, event) => {
-    setNumberOfWords(count);
-    restart();
-    restartTyped();
-    event.currentTarget.blur();
-  };
+  const { handleWordsChange } = useGameModeOpts();
 
   return (
     <section

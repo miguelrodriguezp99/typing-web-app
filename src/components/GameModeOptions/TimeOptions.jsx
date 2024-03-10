@@ -1,15 +1,10 @@
+import useGameModeOpts from "../../hooks/useGameModeOpts";
 import { useWordsStore } from "../../store/useWords";
 
 const TimeOptions = () => {
-  const { timeRemaining, restart, restartTyped, setTimeRemaining } =
-    useWordsStore();
+  const { timeRemaining } = useWordsStore();
+  const { handleTimeChange } = useGameModeOpts();
 
-  const handleTimeChange = (time, event) => {
-    setTimeRemaining(time);
-    restart();
-    restartTyped();
-    event.currentTarget.blur();
-  };
   return (
     <section
       className="flex mx-3 gap-8 sm:gap-8 lg:gap-3 md:gap-2.5

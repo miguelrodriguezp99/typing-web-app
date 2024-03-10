@@ -9,6 +9,30 @@ export const isKeyboardCodeAllowed = (code: string) => {
     );
 };
 
+// Calcular kps y WPM
+export const calculatekpsandWPM = (typedLength: number, timeUsed: number, words: string) => {
+    const kps = Math.ceil((typedLength / timeUsed) * 60);
+    let averageWordLength;
+    if (words) {
+        const totalLength = words
+            .split(" ")
+            .reduce((total, word) => total + word.length, 0);
+        const wordCount = words.split(" ").length;
+        averageWordLength = totalLength / wordCount; // Calcula la longitud promedio de las palabras dinámicamente
+    } else {
+        averageWordLength = 5; // O usa 5 si no hay datos suficientes
+    }
+    const wpm = Math.ceil(typedLength / averageWordLength / (timeUsed / 60));
+    return { kps, wpm };
+};
+
+export const calculateAccuracy = (typed: string, errors: number) => {
+    const accuracy = Math.ceil(
+        ((typed.length - errors) / typed.length) * 100
+    );
+    return accuracy;
+};
+
 
 export const calculateErrors = (userWords: string, words: string) => {
     let errors = 0;

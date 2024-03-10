@@ -5,7 +5,7 @@ import { useWordsStore } from "../store/useWords";
 import { useSoundsStore } from "../store/sounds";
 import useSound from "use-sound";
 
-const useTyping = () => {
+const useTyping = (inputRef) => {
   const {
     actualState,
     setTyped,
@@ -42,6 +42,21 @@ const useTyping = () => {
     },
     [currentSound, deleteTyped, setTyped, play, muted]
   );
+
+  useEffect(() => {
+    const element = inputRef?.current;
+    if (!element) return;
+
+    if (actualState === "FINISHED") {
+      element.removeEventListener("keydown", keyDownHandler);
+    } else {
+      element.addEventListener("keydown", keyDownHandler);
+    }
+
+    return () => {
+      element.removeEventListener("keydown", keyDownHandler);
+    };
+  }, [keyDownHandler, actualState, inputRef]);
 
   /* Quitamos y ponemos el event listener */
   useEffect(() => {
