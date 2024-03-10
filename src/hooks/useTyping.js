@@ -54,6 +54,8 @@ const useTyping = () => {
       window.removeEventListener("keydown", keyDownHandler);
     };
   }, [keyDownHandler, actualState]);
+
+  return keyDownHandler;
 };
 
 export default useTyping;
