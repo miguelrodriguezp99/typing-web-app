@@ -53,6 +53,7 @@ const useTranslate = (divRef) => {
   useEffect(() => {
     if (numberOfWords < 60 && gameMode === GAME_MODE.WORDS) return;
     //Translado solo si quedan mas de dos lineas de diferencia con el bottom
+
     if (
       typed?.length >= maxIndex &&
       words?.length - maxIndex >= 166 &&
@@ -81,6 +82,15 @@ const useTranslate = (divRef) => {
       setMaxIndex(newOffset * 2);
     }
   }, [numberOfWords, actualState, divRef]);
+
+  useEffect(() => {
+    if (gameMode === GAME_MODE.ZEN) {
+      if (typed.length >= maxIndex) {
+        setMaxIndex(maxIndex + offset);
+        setTranslateY(translateY - 40);
+      }
+    }
+  }, [gameMode, typed.length, maxIndex, translateY, offset]);
 
   return { translateY, maxIndex, offset, width };
 };

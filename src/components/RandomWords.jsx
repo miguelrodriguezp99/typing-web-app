@@ -14,7 +14,9 @@ const RandomWords = () => {
         <div
           className={`text-randomwords transition-all delay-75 ${
             !isFocused ? "blured" : ""
-          } `}
+          }
+
+           `}
           ref={ref}
           style={{
             transform: `translateY(${translateY}px)`,

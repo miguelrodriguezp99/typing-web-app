@@ -4,6 +4,7 @@ import { isKeyboardCodeAllowed } from "../utils/helpers";
 import { useWordsStore } from "../store/useWords";
 import { useSoundsStore } from "../store/sounds";
 import useSound from "use-sound";
+import { GAME_MODE } from "../utils/constants";
 
 const useTyping = (inputRef) => {
   const {
@@ -12,6 +13,9 @@ const useTyping = (inputRef) => {
     deleteTyped,
     incrementCursor,
     decrementCursor,
+    gameMode,
+    appendWords,
+    deleteWords,
   } = useWordsStore();
 
   const { muted } = useSoundsStore();
@@ -25,23 +29,44 @@ const useTyping = (inputRef) => {
     ({ key, code }) => {
       if (!isKeyboardCodeAllowed(code)) return;
 
-      switch (key) {
-        case "Backspace":
-          deleteTyped();
-          decrementCursor();
-          break;
-        default:
-          setTyped(key);
-          incrementCursor();
-          break;
+      if (gameMode !== GAME_MODE.ZEN) {
+        switch (key) {
+          case "Backspace":
+            deleteTyped();
+            decrementCursor();
+            break;
+          default:
+            setTyped(key);
+            incrementCursor();
+            break;
+        }
+      } else if (gameMode === GAME_MODE.ZEN) {
+        switch (key) {
+          case "Backspace":
+            deleteTyped();
+            deleteWords();
+            decrementCursor();
+            break;
+          default:
+            setTyped(key);
+            appendWords(key);
+            incrementCursor();
+            break;
+        }
       }
 
       if (!muted) {
         play();
       }
     },
-    [currentSound, deleteTyped, setTyped, play, muted]
+    [currentSound, deleteTyped, setTyped, play, muted, gameMode]
   );
+
+  useEffect(() => {
+    if (gameMode === GAME_MODE.ZEN) {
+      incrementCursor();
+    }
+  }, [gameMode]);
 
   useEffect(() => {
     const element = inputRef?.current;

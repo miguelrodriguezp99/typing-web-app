@@ -12,13 +12,13 @@ import { APP_STATE, PUNCTUATION_MODE, GAME_MODE } from "../utils/constants";
 export const useWordsStore = create((set, get) => ({
   numberOfWords: 30,
   words: null,
+  typed: "",
   actualState: APP_STATE.STOPPED,
   timeSelected: 15,
   timeRemaining: 15,
   timeUsed: 0,
   timeResult: 0,
   errors: 0,
-  typed: "",
   isFocused: true,
   punctuation: PUNCTUATION_MODE.DISABLED,
   gameMode: GAME_MODE.TIME,
@@ -38,6 +38,11 @@ export const useWordsStore = create((set, get) => ({
   },
 
   setWords: () => {
+    if (get().gameMode === GAME_MODE.ZEN) {
+      set({ words: " " });
+      return;
+    }
+
     if (get().punctuation === PUNCTUATION_MODE.DISABLED) {
       set({ words: generate(get().numberOfWords).join(" ") });
     }
@@ -223,5 +228,13 @@ export const useWordsStore = create((set, get) => ({
   setPunctuationModeNumbers: () => {
     set({ punctuation: PUNCTUATION_MODE.NUMBERS });
     get().setWords();
+  },
+
+  appendWords: (word) => {
+    set((state) => ({ words: state.words + word }));
+  },
+
+  deleteWords: () => {
+    set((state) => ({ words: state.words.slice(0, -1) }));
   },
 }));

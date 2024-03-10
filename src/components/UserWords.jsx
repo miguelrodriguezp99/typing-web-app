@@ -4,6 +4,7 @@ import Caret from "./Caret";
 import cn from "classnames";
 import useTranslate from "../hooks/useTranslate";
 import "./../styles/blur.css";
+import { GAME_MODE } from "../utils/constants";
 
 const UserWords = () => {
   const { typed, words, isFocused } = useWordsStore();
@@ -39,10 +40,19 @@ const UserWords = () => {
 };
 
 const Character = ({ typed, expected }) => {
-  const isCorrect = typed === expected;
+  const { gameMode } = useWordsStore();
+
+  const isCorrectFunc = (typed, expected) => {
+    if (gameMode === GAME_MODE.ZEN) {
+      return true;
+    }
+    return typed === expected;
+  };
+
+  const isCorrect = isCorrectFunc(typed, expected);
   const isWhiteSpace = expected === " ";
 
-  return (
+  return gameMode !== GAME_MODE.ZEN ? (
     <span
       className={cn({
         "text-error": !isCorrect && !isWhiteSpace,
@@ -52,6 +62,8 @@ const Character = ({ typed, expected }) => {
     >
       {expected}
     </span>
+  ) : (
+    <span className="text-text">{typed}</span>
   );
 };
 
