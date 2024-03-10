@@ -58,7 +58,7 @@ const Header = () => {
           <div onClick={restart}>
             <KeyboardSecondIcon props="fill-iconstext w-5 h-5 transition-all duration-300 hover:fill-iconstext-hover cursor-pointer" />
           </div>
-          <Link to="/scores">
+          <Link to="/">
             <Crown props="fill-iconstext w-5 h-5" />
           </Link>
           <Info props="fill-iconstext w-5 h-5" />

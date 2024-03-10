@@ -2,10 +2,18 @@ import { GAME_MODE } from "./constants";
 
 export const isKeyboardCodeAllowed = (code: string) => {
     return (
-        code.startsWith("Key") ||
-        code.startsWith("Digit") ||
-        code === "Backspace" ||
-        code === "Space"
+        code.startsWith("Key") || // Cubre las teclas alfabéticas
+        code.startsWith("Digit") || // Cubre los números
+        code.startsWith("Arrow") || // Incluye las teclas de flecha
+        code === "Backspace" || // La tecla de borrar
+        code === "Space" || // La barra espaciadora
+        code === "Enter" || // La tecla Enter
+        code.startsWith("Numpad") || // Teclas del teclado numérico
+        code === "Tab" || // Tecla Tabulador
+        code.startsWith("Shift") || // Teclas Shift
+        code.startsWith("Control") || // Teclas Control
+        code.startsWith("Alt") || // Teclas Alt
+        code === "Escape" // Tecla Escape
     );
 };
 
