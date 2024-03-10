@@ -100,6 +100,10 @@ const GameMode = () => {
         <Tool props="w-4 h-4" />
         custom
       </div>
+
+      <div
+        className={`w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex`}
+      ></div>
     </section>
   );
 };

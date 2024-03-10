@@ -11,10 +11,10 @@ const TimeOptions = () => {
     event.currentTarget.blur();
   };
   return (
-    <section className="flex mx-3 gap-8 sm:gap-8 lg:gap-3 md:gap-2.5">
-      <div
-        className={`w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex`}
-      ></div>
+    <section
+      className="flex mx-3 gap-8 sm:gap-8 lg:gap-3 md:gap-2.5
+    animate-fade animate-duration-800 animate-ease-in-out animate-normal animate-fill-both"
+    >
       <button
         onClick={(event) => handleTimeChange(15, event)}
         selected={timeRemaining === "15"}

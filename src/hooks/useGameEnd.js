@@ -36,7 +36,6 @@ const useGameEnd = () => {
   /* Si terminamos de escribir entonces paramos */
   useEffect(() => {
     if (hasFinished) {
-      console.log("hasFinished");
       finishedState();
     }
   }, [hasFinished, runState, finishedState]);

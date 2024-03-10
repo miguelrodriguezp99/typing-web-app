@@ -6,6 +6,8 @@
 
 TypingPracticeApp is a responsive web application inspired by the renowned typing platform, MonkeyType. Developed for educational purposes, it offers a comprehensive environment for users to enhance their typing skills across various devices, including smartphones, tablets, and desktops. Featuring a dedicated server for user registration and login, the app provides a personalized typing experience with feedback on performance metrics such as speed and accuracy after each test.
 
+The initial version of this application was solely a frontend, and it was entirely developed by me. However, as mentioned before, it is based on the Monkeytype application. Here is the initial repository where I developed the frontend: [\[URL to the application\]](https://github.com/miguelrodriguezp99/typing-web-frontend)
+
 ## Features
 
 - **Responsive Design:** Crafted with mobile, tablet, and desktop users in mind, TypingPracticeApp ensures a seamless and adaptive experience on any device.

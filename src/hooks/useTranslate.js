@@ -53,7 +53,11 @@ const useTranslate = (divRef) => {
   useEffect(() => {
     if (numberOfWords < 60 && gameMode === GAME_MODE.WORDS) return;
     //Translado solo si quedan mas de dos lineas de diferencia con el bottom
-    if (typed.length >= maxIndex && words.length - maxIndex >= 166) {
+    if (
+      typed?.length >= maxIndex &&
+      words?.length - maxIndex >= 166 &&
+      maxIndex !== 0
+    ) {
       setMaxIndex(maxIndex + offset);
       setTranslateY(translateY - 40);
     }
@@ -67,7 +71,7 @@ const useTranslate = (divRef) => {
     gameMode,
   ]);
 
-  //Reiniciar el trasnlate
+  //Reiniciar el translate
   useEffect(() => {
     if (actualState === "STOPPED" || actualState === "FINISHED") {
       setTranslateY(0);
