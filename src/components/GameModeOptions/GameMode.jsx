@@ -24,27 +24,33 @@ const GameMode = () => {
 "
     >
       <div
-        className={`flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 ${
+        className={`group flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 ${
           gameMode === GAME_MODE.TIME
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
         onClick={() => handleChangeGameMode(GAME_MODE.TIME)}
       >
-        <Clock props={`w-4 h-4`} />
-        time
+        <Clock
+          props={`w-4 h-4 group-hover:fill-iconstext-hover transtion-all duration-300`}
+        />
+        <p className="group-hover:text-iconstext-hover transtion-all duration-300">
+          time
+        </p>
       </div>
 
       <div
-        className={`flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 ${
+        className={`group flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 ${
           gameMode === GAME_MODE.WORDS
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
         onClick={() => handleChangeGameMode(GAME_MODE.WORDS)}
       >
-        <LetterA props="w-4 h-4" />
-        words
+        <LetterA props="w-4 h-4 group-hover:fill-iconstext-hover transtion-all duration-300" />
+        <p className="group-hover:text-iconstext-hover transtion-all duration-300">
+          words
+        </p>
       </div>
 
       <div

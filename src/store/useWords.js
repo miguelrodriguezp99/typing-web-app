@@ -4,6 +4,8 @@ import {
   calculateErrors,
   calculatekpsandWPM,
   calculateAccuracy,
+  getRandomPunctuationWord,
+  getRandomNumberWord,
 } from "../utils/helpers";
 import { APP_STATE, PUNCTUATION_MODE, GAME_MODE } from "../utils/constants";
 
@@ -18,7 +20,7 @@ export const useWordsStore = create((set, get) => ({
   errors: 0,
   typed: "",
   isFocused: true,
-  punctuation: PUNCTUATION_MODE.PUNCTUATION,
+  punctuation: PUNCTUATION_MODE.DISABLED,
   gameMode: GAME_MODE.TIME,
   cursor: 0,
   previousWords: 15,
@@ -36,7 +38,35 @@ export const useWordsStore = create((set, get) => ({
   },
 
   setWords: () => {
-    set({ words: generate(get().numberOfWords).join(" ") });
+    if (get().punctuation === PUNCTUATION_MODE.DISABLED) {
+      set({ words: generate(get().numberOfWords).join(" ") });
+    }
+
+    if (get().punctuation === PUNCTUATION_MODE.PUNCTUATION) {
+      set({
+        words: generate({
+          exactly: 1,
+          wordsPerString: get().numberOfWords,
+          formatter: (word, index) => {
+            // Function to get a random punctuation word or a character
+            return getRandomPunctuationWord(word, index);
+          },
+        }).join(" "),
+      });
+    }
+
+    if (get().punctuation === PUNCTUATION_MODE.NUMBERS) {
+      set({
+        words: generate({
+          exactly: 1,
+          wordsPerString: get().numberOfWords,
+          formatter: (word, index) => {
+            // Function to get a random punctuation word or a character
+            return getRandomNumberWord(word);
+          },
+        }).join(" "),
+      });
+    }
   },
 
   incrementWords: () => {
@@ -178,5 +208,20 @@ export const useWordsStore = create((set, get) => ({
       const acc = calculateAccuracy(typed, get().errors);
       set({ kps, wpm, timeResult, acc });
     }
+  },
+
+  setPunctuationModePunctuation: () => {
+    set({ punctuation: PUNCTUATION_MODE.PUNCTUATION });
+    get().setWords();
+  },
+
+  setPunctuationModeDisabled: () => {
+    set({ punctuation: PUNCTUATION_MODE.DISABLED });
+    get().setWords();
+  },
+
+  setPunctuationModeNumbers: () => {
+    set({ punctuation: PUNCTUATION_MODE.NUMBERS });
+    get().setWords();
   },
 }));

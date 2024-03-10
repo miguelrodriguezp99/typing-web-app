@@ -3,11 +3,14 @@ import { useWordsStore } from "../../store/useWords";
 
 import GameMode from "./GameMode";
 import WordsOptions from "./WordsOptions";
-import { GAME_MODE } from "../../utils/constants";
+import { GAME_MODE, PUNCTUATION_MODE } from "../../utils/constants";
 import TimeOptions from "./TimeOptions";
+import useGamePunctuationMode from "../../hooks/useGamePunctuationMode";
 
 const Options = () => {
-  const { gameMode } = useWordsStore();
+  const { gameMode, punctuation } = useWordsStore();
+  const { handleChangePunctuationMode, handleChangeNumbersMode } =
+    useGamePunctuationMode();
 
   return (
     <>
@@ -23,14 +26,39 @@ const Options = () => {
         >
           {/* -------- Header Top Left || SELECTION OF PUNCTUATION -----------  */}
           <section className="flex lg:gap-4 md:gap-2 sm:gap-10 gap-10 tracking-tight ">
-            <div className="flex align-center items-center text-center gap-1 lg:gap-2 md:gap-1 lg:ml-3 md:ml-1">
-              <AtSign props="fill-iconstext w-4 h-4" />
-              <p className="text-sm text-iconstext">punctuation</p>
-            </div>
-            <div className="flex align-center items-center text-center gap-1 lg:gap-2 md:gap-1">
-              <Hashtag props="fill-iconstext w-4 h-4" />
-              <p className="text-sm text-iconstext ">numbers</p>
-            </div>
+            <button
+              onClick={() =>
+                handleChangePunctuationMode(PUNCTUATION_MODE.PUNCTUATION)
+              }
+              className={`group flex align-center items-center text-center gap-1 lg:gap-2 md:gap-1 lg:ml-3 md:ml-1
+              ${
+                punctuation === PUNCTUATION_MODE.PUNCTUATION
+                  ? "fill-secondary text-secondary"
+                  : "fill-iconstext text-iconstext"
+              }`}
+            >
+              <AtSign props="w-4 h-4 group-hover:fill-iconstext-hover transtion-all duration-300" />
+              <p className="text-sm group-hover:text-iconstext-hover transtion-all duration-300">
+                punctuation
+              </p>
+            </button>
+
+            <button
+              onClick={() =>
+                handleChangeNumbersMode(PUNCTUATION_MODE.PUNCTUATION)
+              }
+              className={`group flex align-center items-center text-center gap-1 lg:gap-2 md:gap-1 
+              ${
+                punctuation === PUNCTUATION_MODE.NUMBERS
+                  ? "fill-secondary text-secondary"
+                  : "fill-iconstext text-iconstext"
+              }`}
+            >
+              <Hashtag props="w-4 h-4 group-hover:fill-iconstext-hover transtion-all duration-300" />
+              <p className="text-sm group-hover:text-iconstext-hover transtion-all duration-300">
+                numbers
+              </p>
+            </button>
             <div className="w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex"></div>
           </section>
 
