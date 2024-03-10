@@ -23,7 +23,7 @@ const useGameEnd = () => {
 
   /* ---- HAS FINISHED ---- */
   const hasFinished = useMemo(() => {
-    if (gameMode === GAME_MODE.WORDS) {
+    if (gameMode === GAME_MODE.WORDS || gameMode === GAME_MODE.QUOTE) {
       return cursor >= words?.length;
     }
     if (gameMode === GAME_MODE.TIME) {

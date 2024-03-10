@@ -10,9 +10,7 @@ import MobileOptions from "../../components/GameModeOptions/MobileOptions";
 import useGameEnd from "../../hooks/useGameEnd";
 
 function App() {
-  const { setWords, actualState } = useWordsStore();
-
-  console.log("actualState", actualState);
+  const { setWords } = useWordsStore();
 
   //Handle mouse out of the window
   useMouseOut();

@@ -2,9 +2,10 @@ import { useWordsStore } from "../store/useWords";
 import useTranslate from "../hooks/useTranslate";
 import { useRef } from "react";
 import "./../styles/blur.css";
+import { GAME_MODE } from "../utils/constants";
 
 const RandomWords = () => {
-  const { words, isFocused } = useWordsStore();
+  const { words, isFocused, gameMode } = useWordsStore();
   const ref = useRef(null);
   const { translateY } = useTranslate(ref);
 
@@ -15,6 +16,9 @@ const RandomWords = () => {
           className={`text-randomwords transition-all delay-75 ${
             !isFocused ? "blured" : ""
           }
+
+          ${!gameMode === GAME_MODE.ZEN ? "opacity-0" : ""}
+          
 
            `}
           ref={ref}

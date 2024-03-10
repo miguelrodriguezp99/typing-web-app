@@ -13,7 +13,7 @@ const useGameModeOpts = () => {
     setTimeSelected,
   } = useWordsStore();
 
-  const handleChangeGameMode = (mode) => {
+  const handleChangeGameMode = (mode, event) => {
     setGameMode(mode);
 
     if (mode === GAME_MODE.TIME) {
@@ -24,6 +24,11 @@ const useGameModeOpts = () => {
     if (mode === GAME_MODE.WORDS) {
       setNumberOfWords(previousWords);
     }
+
+    restart();
+    event.currentTarget.blur();
+
+    //Hacer algo aqui
   };
 
   const handleTimeChange = (time, event) => {

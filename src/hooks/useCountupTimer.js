@@ -8,7 +8,12 @@ const useCountupTimer = () => {
 
   //Time countdown every second
   useEffect(() => {
-    if (actualState === "RUNNING" && gameMode === GAME_MODE.WORDS) {
+    if (
+      actualState === "RUNNING" &&
+      (gameMode === GAME_MODE.WORDS ||
+        gameMode === GAME_MODE.QUOTE ||
+        gameMode === GAME_MODE.ZEN)
+    ) {
       const timer =
         actualState === "RUNNING" &&
         setInterval(() => setTimeUsed(timeUsed + 1), 1000);

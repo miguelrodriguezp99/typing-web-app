@@ -9,8 +9,7 @@ const Timer = () => {
   const { timeUsed } = useCountupTimer();
   return (
     <div className="text-secondary max-w-6xl mx-auto text-3xl mb-5">
-      {gameMode === GAME_MODE.TIME && timeRemaining}
-      {gameMode === GAME_MODE.WORDS && timeUsed}
+      {gameMode === GAME_MODE.TIME ? timeRemaining : timeUsed}
     </div>
   );
 };

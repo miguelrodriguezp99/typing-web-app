@@ -17,12 +17,15 @@ const GameMode = () => {
   return (
     <section
       className="flex tracking-tight 
-              lg:ml-3 lg:gap-4 
-              md:ml-3 md:gap-1
+              lg:gap-4 
+              md:gap-1
               sm:gap-6 sm:ml-0
               gap-6 ml-0
+              
 "
     >
+      <div className="w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex"></div>
+
       <div
         className={`group flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 
         ${
@@ -30,7 +33,7 @@ const GameMode = () => {
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
-        onClick={() => handleChangeGameMode(GAME_MODE.TIME)}
+        onClick={(e) => handleChangeGameMode(GAME_MODE.TIME, e)}
       >
         <Clock
           props={`w-4 h-4 group-hover:fill-iconstext-hover transtion-all duration-300`}
@@ -46,7 +49,7 @@ const GameMode = () => {
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
-        onClick={() => handleChangeGameMode(GAME_MODE.WORDS)}
+        onClick={(e) => handleChangeGameMode(GAME_MODE.WORDS, e)}
       >
         <LetterA props="w-4 h-4 group-hover:fill-iconstext-hover transtion-all duration-300" />
         <p className="group-hover:text-iconstext-hover transtion-all duration-300">
@@ -60,7 +63,7 @@ const GameMode = () => {
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
-        onClick={() => handleChangeGameMode(GAME_MODE.QUOTE)}
+        onClick={(e) => handleChangeGameMode(GAME_MODE.QUOTE, e)}
       >
         <Quote props="w-4 h-4" />
         quote
@@ -72,7 +75,7 @@ const GameMode = () => {
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
-        onClick={() => handleChangeGameMode(GAME_MODE.ZEN)}
+        onClick={(e) => handleChangeGameMode(GAME_MODE.ZEN, e)}
       >
         <Mountain props="w-4 h-4" />
         zen
@@ -84,7 +87,7 @@ const GameMode = () => {
             ? "fill-secondary text-secondary"
             : "fill-iconstext text-iconstext"
         }`}
-        onClick={() => handleChangeGameMode(GAME_MODE.CUSTOM)}
+        onClick={(e) => handleChangeGameMode(GAME_MODE.CUSTOM, e)}
       >
         <Tool props="w-4 h-4" />
         custom

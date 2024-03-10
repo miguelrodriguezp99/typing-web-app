@@ -8,6 +8,7 @@ import {
   getRandomNumberWord,
 } from "../utils/helpers";
 import { APP_STATE, PUNCTUATION_MODE, GAME_MODE } from "../utils/constants";
+import { quotes } from "../utils/quotes";
 
 export const useWordsStore = create((set, get) => ({
   numberOfWords: 30,
@@ -38,8 +39,21 @@ export const useWordsStore = create((set, get) => ({
   },
 
   setWords: () => {
+    if (get().gameMode === GAME_MODE.QUOTE) {
+      //Set words a random quote
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      set({ words: randomQuote });
+      return;
+    }
+
     if (get().gameMode === GAME_MODE.ZEN) {
+      //Set words a random quote
       set({ words: " " });
+      return;
+    }
+
+    if (get().gameMode === GAME_MODE.QUOTE) {
+      set({ words: generate(get().numberOfWords).join(" ") });
       return;
     }
 
@@ -188,7 +202,10 @@ export const useWordsStore = create((set, get) => ({
 
   /* ---- PUNCTUATION ---- */
   calculateResults: () => {
-    if (get().gameMode === GAME_MODE.WORDS) {
+    if (
+      get().gameMode === GAME_MODE.WORDS ||
+      get().gameMode === GAME_MODE.QUOTE
+    ) {
       const { typed, timeUsed, words } = get();
 
       get().setErrors(calculateErrors(typed, words));
@@ -217,17 +234,17 @@ export const useWordsStore = create((set, get) => ({
 
   setPunctuationModePunctuation: () => {
     set({ punctuation: PUNCTUATION_MODE.PUNCTUATION });
-    get().setWords();
+    get().restart();
   },
 
   setPunctuationModeDisabled: () => {
     set({ punctuation: PUNCTUATION_MODE.DISABLED });
-    get().setWords();
+    get().restart();
   },
 
   setPunctuationModeNumbers: () => {
     set({ punctuation: PUNCTUATION_MODE.NUMBERS });
-    get().setWords();
+    get().restart();
   },
 
   appendWords: (word) => {
