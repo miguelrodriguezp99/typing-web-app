@@ -9,6 +9,8 @@ export const useWordsStore = create((set, get) => ({
   actualState: APP_STATE.STOPPED,
   timeSelected: 15,
   timeRemaining: 15,
+  timeUsed: 0,
+  timeResult: 0,
   errors: 0,
   typed: "",
   isFocused: true,
@@ -16,6 +18,8 @@ export const useWordsStore = create((set, get) => ({
   gameMode: GAME_MODE.TIME,
   cursor: 0,
   previousWords: 15,
+  kps: 0,
+  wpm: 0,
 
   setPreviousWords: (words) => {
     set({ previousWords: words });
@@ -75,14 +79,21 @@ export const useWordsStore = create((set, get) => ({
     set({ inputs: get().inputs + 1 });
   },
 
+  restartTime: () => {
+    set({ timeTimeRemaining: get().timeSelected });
+    set({ timeUsed: 0 });
+  },
+
   restart: () => {
+    const { restartTime, setWords, restartTyped, stopState } = get();
     set({ inputs: 0 });
     set({ corrects: 0 });
     set({ errors: 0 });
     set({ cursor: 0 });
-    get().setWords();
-    get().restartTyped();
-    get().stopState();
+    restartTime();
+    setWords();
+    restartTyped();
+    stopState();
   },
 
   /* ---- Estados ---- */
@@ -96,7 +107,7 @@ export const useWordsStore = create((set, get) => ({
   },
 
   finishedState: () => {
-    get().setErrors(calculateErrors(get().typed, get().words));
+    get().calculateResults();
     set({ actualState: APP_STATE.FINISHED });
   },
 
@@ -129,5 +140,51 @@ export const useWordsStore = create((set, get) => ({
   /* ---- TIMER ---- */
   setTimeRemaining: (time) => {
     set({ timeRemaining: time });
+  },
+
+  setTimeUsed: (time) => {
+    set({ timeUsed: time });
+  },
+
+  /* ---- PUNCTUATION ---- */
+  calculateResults: () => {
+    // Calcular kps y WPM
+    const calculatekpsandWPM = (typedLength, timeUsed, words) => {
+      const kps = Math.ceil((typedLength / timeUsed) * 60);
+      let averageWordLength;
+      if (words) {
+        const totalLength = words
+          .split(" ")
+          .reduce((total, word) => total + word.length, 0);
+        const wordCount = words.split(" ").length;
+        averageWordLength = totalLength / wordCount; // Calcula la longitud promedio de las palabras dinámicamente
+      } else {
+        averageWordLength = 5; // O usa 5 si no hay datos suficientes
+      }
+      const wpm = Math.ceil(typedLength / averageWordLength / (timeUsed / 60));
+      return { kps, wpm };
+    };
+
+    if (get().gameMode === GAME_MODE.WORDS) {
+      const { typed, timeUsed, words } = get();
+      get().setErrors(calculateErrors(typed, words));
+      const { kps, wpm } = calculatekpsandWPM(typed.length, timeUsed, words);
+      const timeResult = get().timeUsed;
+      set({ kps, wpm, timeResult });
+      get().setErrors(calculateErrors(get().typed, get().words));
+    }
+
+    if (get().gameMode === GAME_MODE.TIME) {
+      const { typed, timeSelected, words } = get();
+
+      const { kps, wpm } = calculatekpsandWPM(
+        typed.length,
+        timeSelected,
+        words
+      );
+      const timeResult = get().timeSelected;
+      set({ kps, wpm, timeResult });
+      get().setErrors(calculateErrors(get().typed, get().words));
+    }
   },
 }));

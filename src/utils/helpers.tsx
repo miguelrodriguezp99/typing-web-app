@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { GAME_MODE } from "./constants";
 
 export const isKeyboardCodeAllowed = (code: string) => {
     return (
@@ -29,3 +30,11 @@ export const calculateErrors = (userWords: string, words: string) => {
     return errors;
 };
 
+
+export const getTestType = (gameMode: string, numberOfWords: string, timeSelected: string) => {
+    if (gameMode === GAME_MODE.TIME) {
+        return `time ${timeSelected} english`;
+    } else {
+        return `words ${numberOfWords} english`;
+    }
+}

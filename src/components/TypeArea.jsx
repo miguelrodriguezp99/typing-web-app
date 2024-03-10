@@ -17,7 +17,7 @@ const TypeArea = () => {
     <>
       <div
         className={`
-          max-h-[515px]  
+          h-[calc(100vh-380px)] sm:h-[calc(100vh-378px)] sm:min-h-[300px]
           mt-[50px] sm:mt-[75px] md:mt-[100px] 
           animate-fade animate-once 
           animate-duration-[800ms] animate-normal 

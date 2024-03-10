@@ -33,7 +33,7 @@ const useGameEnd = () => {
     return false;
   }, [cursor, words, gameMode, timeRemaining]);
 
-  /* Si terminamos de escribir entonces paramos */
+  /* Si terminamos entonces paramos el juego */
   useEffect(() => {
     if (hasFinished) {
       finishedState();
@@ -53,7 +53,8 @@ const useGameEnd = () => {
     }
   }, [actualState, restartCursor, setTyped, setTimeRemaining, timeSelected]);
 
-  /* Si escribimos ponemos en marcha el estado */
+  // * ------------- GAME START HERE  ------------------ * //
+  /* START THE GAME IF USER START TYPING */
   useEffect(() => {
     if (cursor >= 1 && actualState === "STOPPED") {
       runState();
