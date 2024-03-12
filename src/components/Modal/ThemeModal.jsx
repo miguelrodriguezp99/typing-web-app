@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./Modal.css";
 import { Palette } from "../../assets/icons/FooterIcons";
 import Theme from "../Theme";
@@ -13,8 +13,6 @@ export default function ThemeModal() {
     if (theme) {
       setCurrentTheme(theme);
       document.documentElement.classList.add(theme);
-    } else {
-      setCurrentTheme("dark");
     }
   }, []);
 
