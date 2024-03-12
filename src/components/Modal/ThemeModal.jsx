@@ -4,7 +4,7 @@ import { Palette } from "../../assets/icons/FooterIcons";
 import Theme from "../Theme";
 export default function ThemeModal() {
   const [modal, setModal] = useState(false);
-  const [oldTheme, setOldTheme] = useState("dark");
+  const [oldTheme, setOldTheme] = useState("");
   const [currentTheme, setCurrentTheme] = useState("dark");
   const [animationClass, setAnimationClass] = useState("");
 
@@ -43,9 +43,13 @@ export default function ThemeModal() {
 
   // Initial theme
   useEffect(() => {
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.add("light");
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+      setOldTheme("dark");
+    } else {
+      document.documentElement.classList.add("light");
+      setOldTheme("light");
+    }
   }, []);
 
   const switchTheme = useCallback(
