@@ -77,17 +77,11 @@ export default function ThemeModal() {
     root.classList.add(oldTheme);
   };
 
-  // const mouseLeave = useCallback((theme) => {
-  //   return () => {
-  //     console.log("bye!");
-  //   };
-  // }, []);
-
   return (
     <>
       <button onClick={toggleModal} className="p-3">
         <div className="flex flex-row gap-1 justify-center text-center items-center group">
-          <Palette props="w-5 h-5 fill-iconstext group-hover:fill-iconstext-hover transition-all duration-300" />
+          <Palette props="w-5 h-5 fill-iconstext group-hover:fill-iconstext-hover transition-all duration-300 mt-1" />
           <p className="text-iconstext group-hover:text-iconstext-hover transition-all duration-300">
             {currentTheme}
           </p>

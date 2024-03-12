@@ -16,6 +16,7 @@ const useTyping = (inputRef) => {
     gameMode,
     appendWords,
     deleteWords,
+    restart,
   } = useWordsStore();
 
   const { muted } = useSoundsStore();
@@ -26,8 +27,15 @@ const useTyping = (inputRef) => {
   /* ----------------- */
 
   const keyDownHandler = useCallback(
-    ({ key, code }) => {
+    (event) => {
+      const { key, code } = event;
       if (!isKeyboardCodeAllowed(code)) return;
+
+      if (key === "Tab") {
+        event.preventDefault(); // Esto asegura que el comportamiento predeterminado de la tecla Tab siempre se prevenga.
+        restart();
+        return; // Previene cualquier otra acción después de reiniciar.
+      }
 
       if (gameMode !== GAME_MODE.ZEN) {
         switch (key) {

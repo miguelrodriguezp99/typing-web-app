@@ -16,7 +16,8 @@ const GameMode = () => {
 
   return (
     <section
-      className="flex tracking-tight 
+      className="flex tracking-tight
+              px-1
               lg:gap-4 
               md:gap-1
               sm:gap-6 sm:ml-0
@@ -24,7 +25,9 @@ const GameMode = () => {
               
 "
     >
-      <div className="w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex"></div>
+      {(gameMode === GAME_MODE.WORDS || gameMode === GAME_MODE.TIME) && (
+        <div className="w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex"></div>
+      )}
 
       <div
         className={`group flex align-center items-center text-center gap-1 lg:gap-1 md:gap-1 cursor-pointer text-sm transition-all duration-300 
@@ -93,9 +96,9 @@ const GameMode = () => {
         custom
       </div>
 
-      <div
-        className={`w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex`}
-      ></div>
+      {(gameMode === GAME_MODE.WORDS || gameMode === GAME_MODE.TIME) && (
+        <div className="w-1 h-[22px] bg-primary rounded-md hidden sm:hidden lg:flex md:flex"></div>
+      )}
     </section>
   );
 };

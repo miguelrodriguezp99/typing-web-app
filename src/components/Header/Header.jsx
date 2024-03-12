@@ -39,10 +39,11 @@ const Header = () => {
       onClick={(e) => handleHeaderClick(e)}
     >
       <div className="flex flex-row gap-3 items-center">
-        <Link to="/">
-          <KeyboardIcon props="fill-selected" />
-        </Link>
-
+        <div className="mt-3">
+          <Link to="/">
+            <KeyboardIcon props="fill-selected" />
+          </Link>
+        </div>
         <h1
           className="text-4xl font bold left-0 text-logo cursor-pointer hidden sm:block"
           onClick={(e) => {
@@ -52,9 +53,9 @@ const Header = () => {
             setFocusedTrue();
           }}
         >
-          Typemonkey
+          typemonkey
         </h1>
-        <div className="flex align-center items-center mt-2 gap-6 ml-2 flex-1 ">
+        <div className="flex align-center items-center mt-3 gap-6 ml-2 flex-1">
           <div onClick={restart}>
             <KeyboardSecondIcon props="fill-iconstext w-5 h-5 transition-all duration-300 hover:fill-iconstext-hover cursor-pointer" />
           </div>

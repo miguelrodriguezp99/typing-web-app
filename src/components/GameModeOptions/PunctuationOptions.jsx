@@ -10,8 +10,8 @@ const PunctuationOptions = () => {
 
   return (
     <section
-      className="flex lg:gap-4 md:gap-2 sm:gap-10 gap-10 tracking-tight mr-3 
-    animate-fade-left animate-once animate-normal animate-fill-both"
+      className="flex lg:gap-4 md:gap-2 sm:gap-10 gap-10 tracking-tight mr-3
+    animate-fade animate-duration-800 animate-ease-in-out animate-normal animate-fill-both"
     >
       <div
         onClick={() =>

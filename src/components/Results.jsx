@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import html2canvas from "html2canvas";
 import ChartComp from "./Chart/Chart";
 import { getTestType } from "../utils/helpers";
+import { Link } from "react-router-dom";
 
 //import "../styles/Results.css";
 
@@ -162,7 +163,10 @@ const Results = () => {
         </div>
 
         <div className="mx-auto text-center bg-primary text-iconstext mt-5">
-          Login in to save your information
+          <Link to="/login" className="underline">
+            Login
+          </Link>
+          in to save your information
         </div>
         <div className="flex items-center mx-auto bg-tertiary w-[95%] sm:w-[700px] h-[90px] align-center justify-center mt-5">
           <Ad props="w-[56px] h-[56px] fill-iconstext" />
