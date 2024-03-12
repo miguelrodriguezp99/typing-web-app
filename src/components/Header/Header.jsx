@@ -70,7 +70,6 @@ const Header = () => {
           </Link>
           <Info props="fill-iconstext w-5 h-5" />
           <Settings props="fill-iconstext w-5 h-5" />
-          <button onClick={handleInsertScore}>Score!</button>
         </div>
         <div className="flex flex-row align-center items-center mt-2 gap-6 ml-2">
           {authUser ? (
