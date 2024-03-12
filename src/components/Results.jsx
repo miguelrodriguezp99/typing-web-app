@@ -24,7 +24,7 @@ const Results = () => {
     restart,
     typed,
     wpm,
-    acc,
+    accuracy,
     timeResult,
     gameMode,
     numberOfWords,
@@ -103,7 +103,7 @@ const Results = () => {
             </div>
             <div className="">
               <div className="text-3xl text-iconstext">acc</div>
-              <div className="text-6xl text-secondary">{acc}%</div>
+              <div className="text-6xl text-secondary">{accuracy}%</div>
             </div>
           </div>
           <ChartComp />

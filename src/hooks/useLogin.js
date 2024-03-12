@@ -12,6 +12,7 @@ const useLogin = () => {
 
     setLoading(true);
 
+    //`https://${process.env.REACT_APP_API_URL}/auth/login`
     try {
       const res = await fetch(
         `https://${process.env.REACT_APP_API_URL}/auth/login`,

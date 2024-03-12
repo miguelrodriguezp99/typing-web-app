@@ -120,6 +120,7 @@ export default function SoundModal() {
                   words
                 </button>
                 <button
+                  onClick={() => handleChangeGameMode(GAME_MODE.QUOTE)}
                   className={`mobile-modal-button ${
                     gameMode === GAME_MODE.QUOTE
                       ? "bg-secondary text-tertiary"
@@ -129,6 +130,7 @@ export default function SoundModal() {
                   quote
                 </button>
                 <button
+                  onClick={() => handleChangeGameMode(GAME_MODE.ZEN)}
                   className={`mobile-modal-button ${
                     gameMode === GAME_MODE.ZEN
                       ? "bg-secondary text-tertiary"

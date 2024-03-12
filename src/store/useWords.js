@@ -9,6 +9,7 @@ import {
 } from "../utils/helpers";
 import { APP_STATE, PUNCTUATION_MODE, GAME_MODE } from "../utils/constants";
 import { quotes } from "../utils/quotes";
+import { insertScore } from "../utils/fetching";
 
 export const useWordsStore = create((set, get) => ({
   numberOfWords: 30,
@@ -27,7 +28,7 @@ export const useWordsStore = create((set, get) => ({
   previousWords: 15,
   kps: 0,
   wpm: 0,
-  accuaracy: 0,
+  accuracy: 0,
 
   setPreviousWords: (words) => {
     set({ previousWords: words });
@@ -144,6 +145,7 @@ export const useWordsStore = create((set, get) => ({
     set({ corrects: 0 });
     set({ errors: 0 });
     set({ cursor: 0 });
+    set({ timeUsed: 0 });
     restartTime();
     setWords();
     restartTyped();
@@ -161,7 +163,6 @@ export const useWordsStore = create((set, get) => ({
   },
 
   finishedState: () => {
-    get().calculateResults();
     set({ actualState: APP_STATE.FINISHED });
   },
 
@@ -212,8 +213,8 @@ export const useWordsStore = create((set, get) => ({
       const { kps, wpm } = calculatekpsandWPM(typed.length, timeUsed, words);
       const timeResult = get().timeUsed;
       get().setErrors(calculateErrors(get().typed, get().words));
-      const acc = calculateAccuracy(typed, get().errors);
-      set({ kps, wpm, timeResult, acc });
+      const accuracy = calculateAccuracy(typed, get().errors);
+      set({ kps, wpm, timeResult, accuracy });
     }
 
     if (get().gameMode === GAME_MODE.TIME) {
@@ -230,6 +231,16 @@ export const useWordsStore = create((set, get) => ({
       const acc = calculateAccuracy(typed, get().errors);
       set({ kps, wpm, timeResult, acc });
     }
+
+    insertScore({
+      gameMode: get().gameMode,
+      timeUsed: get().timeUsed,
+      timeSelected: get().timeSelected,
+      timeRemaining: get().timeRemaining,
+      numberOfWords: get().numberOfWords,
+      wpm: get().wpm,
+      accuracy: get().accuracy,
+    });
   },
 
   setPunctuationModePunctuation: () => {

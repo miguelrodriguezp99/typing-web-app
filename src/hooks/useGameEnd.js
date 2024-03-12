@@ -1,6 +1,8 @@
 import { useEffect, useMemo } from "react";
 import { useWordsStore } from "../store/useWords";
 import { GAME_MODE } from "../utils/constants";
+import { useAuthContext } from "../context/AuthContext";
+import useSaveScore from "./useSaveScore";
 
 const useGameEnd = () => {
   const {
@@ -17,7 +19,11 @@ const useGameEnd = () => {
     timeSelected,
     incrementWords,
     setNumberOfWords,
+    calculateResults,
   } = useWordsStore();
+
+  const { authUser } = useAuthContext();
+  const { insertScore } = useSaveScore();
 
   /* ------------------ LOGICA DEL TIMER Y DEL ESTADO ----------------------------- */
 
@@ -33,12 +39,14 @@ const useGameEnd = () => {
     return false;
   }, [cursor, words, gameMode, timeRemaining]);
 
-  /* Si terminamos entonces paramos el juego */
+  /* ---- GAME ENDS!! ------------------*/
   useEffect(() => {
     if (hasFinished) {
+      calculateResults();
       finishedState();
     }
-  }, [hasFinished, runState, finishedState]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasFinished, calculateResults]);
 
   /* cambiamos el cursor para que al darle a reiniciar no empiece el contador de nuevo sin escribir */
   useEffect(() => {

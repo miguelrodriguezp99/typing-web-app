@@ -13,12 +13,14 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import useLogout from "../../hooks/useLogout";
+import useSaveScore from "../../hooks/useSaveScore";
 
 const Header = () => {
   const { authUser } = useAuthContext();
   const navigate = useNavigate();
   const { restart, setFocusedTrue } = useWordsStore();
   const { logout } = useLogout();
+  const { insertScore } = useSaveScore();
 
   const handleHeaderClick = (e) => {
     e.stopPropagation();
@@ -26,6 +28,10 @@ const Header = () => {
 
   const handleLogOut = () => {
     logout();
+  };
+
+  const handleInsertScore = () => {
+    insertScore();
   };
 
   return (
@@ -64,6 +70,7 @@ const Header = () => {
           </Link>
           <Info props="fill-iconstext w-5 h-5" />
           <Settings props="fill-iconstext w-5 h-5" />
+          <button onClick={handleInsertScore}>Score!</button>
         </div>
         <div className="flex flex-row align-center items-center mt-2 gap-6 ml-2">
           {authUser ? (
