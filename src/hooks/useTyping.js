@@ -41,11 +41,11 @@ const useTyping = (inputRef) => {
         switch (key) {
           case "Backspace":
             //deleteTyped();
-            decrementCursor();
+            //decrementCursor();
             break;
           default:
             //setTyped(key);
-            incrementCursor();
+            //incrementCursor();
             break;
         }
       } else if (gameMode === GAME_MODE.ZEN) {
@@ -53,12 +53,12 @@ const useTyping = (inputRef) => {
           case "Backspace":
             //deleteTyped();
             deleteWords();
-            decrementCursor();
+            //decrementCursor();
             break;
           default:
             //setTyped(key);
             appendWords(key);
-            incrementCursor();
+            //incrementCursor();
             break;
         }
       }

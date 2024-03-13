@@ -10,7 +10,9 @@ import MobileOptions from "../../components/GameModeOptions/MobileOptions";
 import useGameEnd from "../../hooks/useGameEnd";
 
 function App() {
-  const { setWords } = useWordsStore();
+  const { setWords, incrementCursor } = useWordsStore();
+  const { setFocusedTrue, setTypedInput, typed } = useWordsStore();
+  const inputRef = useRef(null);
 
   //Handle mouse out of the window
   useMouseOut();
@@ -28,8 +30,10 @@ function App() {
     setWords();
   }, [setWords]);
 
-  const { setFocusedTrue, setTypedInput, typed } = useWordsStore();
-  const inputRef = useRef(null);
+  //Initialize focus on input to be able to write without clicking
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [inputRef]);
 
   const handleSetFocusedTrue = (e) => {
     e.stopPropagation();
@@ -40,6 +44,7 @@ function App() {
   const handleWrite = (e) => {
     e.preventDefault();
     setTypedInput(e.target.value);
+    incrementCursor();
   };
 
   return (
