@@ -270,4 +270,12 @@ export const useWordsStore = create((set, get) => ({
   deleteWords: () => {
     set((state) => ({ words: state.words.slice(0, -1) }));
   },
+
+  setZenWords: (words) => {
+    set({ words });
+  },
+
+  setCursor: (cursor) => {
+    set({ cursor });
+  },
 }));

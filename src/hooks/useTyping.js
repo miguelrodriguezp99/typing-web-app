@@ -10,22 +10,35 @@ const useTyping = (inputRef) => {
   const {
     actualState,
     setTyped,
+    typed,
     deleteTyped,
     incrementCursor,
-    decrementCursor,
     gameMode,
-    appendWords,
-    deleteWords,
+    setTypedInput,
     restart,
+    setCursor,
+    setZenWords,
   } = useWordsStore();
 
-  const { muted } = useSoundsStore();
-
   /* ---- Sonido ---- */
-  const { currentSound, volume } = useSoundsStore();
+  const { currentSound, volume, muted } = useSoundsStore();
   const [play] = useSound(currentSound, { volume: volume });
   /* ----------------- */
 
+  const handleWrite = (e) => {
+    e.preventDefault();
+
+    if (gameMode !== GAME_MODE.ZEN) {
+      setTypedInput(e.target.value);
+      setCursor(typed.length + 1);
+    } else {
+      setTypedInput(e.target.value);
+      setCursor(typed.length + 1);
+      setZenWords(typed);
+    }
+  };
+
+  /* PC HANDLERS */
   const keyDownHandler = useCallback(
     (event) => {
       const { key, code } = event;
@@ -34,33 +47,7 @@ const useTyping = (inputRef) => {
       if (key === "Tab") {
         event.preventDefault(); // Esto asegura que el comportamiento predeterminado de la tecla Tab siempre se prevenga.
         restart();
-        return; // Previene cualquier otra acción después de reiniciar.
-      }
-
-      if (gameMode !== GAME_MODE.ZEN) {
-        switch (key) {
-          case "Backspace":
-            //deleteTyped();
-            //decrementCursor();
-            break;
-          default:
-            //setTyped(key);
-            //incrementCursor();
-            break;
-        }
-      } else if (gameMode === GAME_MODE.ZEN) {
-        switch (key) {
-          case "Backspace":
-            //deleteTyped();
-            deleteWords();
-            //decrementCursor();
-            break;
-          default:
-            //setTyped(key);
-            appendWords(key);
-            //incrementCursor();
-            break;
-        }
+        return;
       }
 
       if (!muted) {
@@ -70,12 +57,14 @@ const useTyping = (inputRef) => {
     [currentSound, deleteTyped, setTyped, play, muted, gameMode]
   );
 
+  // Need to increment the cursor in 1 to be able to write in zen mode
   useEffect(() => {
     if (gameMode === GAME_MODE.ZEN) {
       incrementCursor();
     }
   }, [gameMode]);
 
+  // Focus the input which is hidden by absolute value in the screen
   useEffect(() => {
     const element = inputRef?.current;
     if (!element) return;
@@ -91,7 +80,7 @@ const useTyping = (inputRef) => {
     };
   }, [keyDownHandler, actualState, inputRef]);
 
-  /* Quitamos y ponemos el event listener */
+  /* Event listeners for window */
   useEffect(() => {
     if (actualState === "FINISHED") {
       window.removeEventListener("keydown", keyDownHandler);
@@ -103,7 +92,7 @@ const useTyping = (inputRef) => {
     };
   }, [keyDownHandler, actualState]);
 
-  return keyDownHandler;
+  return { keyDownHandler, handleWrite };
 };
 
 export default useTyping;

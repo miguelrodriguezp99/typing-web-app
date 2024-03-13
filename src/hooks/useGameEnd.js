@@ -18,6 +18,7 @@ const useGameEnd = () => {
     incrementWords,
     setNumberOfWords,
     calculateResults,
+    typed,
   } = useWordsStore();
 
   /* ------------------ LOGICA DEL TIMER Y DEL ESTADO ----------------------------- */

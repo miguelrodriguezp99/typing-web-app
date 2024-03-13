@@ -18,7 +18,7 @@ function App() {
   useMouseOut();
 
   //Start typing action
-  useTyping();
+  const { handleWrite } = useTyping();
 
   //useGameEnd
   useGameEnd();
@@ -39,12 +39,6 @@ function App() {
     e.stopPropagation();
     setFocusedTrue();
     if (inputRef?.current !== null) inputRef.current?.focus();
-  };
-
-  const handleWrite = (e) => {
-    e.preventDefault();
-    setTypedInput(e.target.value);
-    incrementCursor();
   };
 
   return (
