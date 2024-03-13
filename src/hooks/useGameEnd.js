@@ -1,8 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useWordsStore } from "../store/useWords";
 import { GAME_MODE } from "../utils/constants";
-import { useAuthContext } from "../context/AuthContext";
-import useSaveScore from "./useSaveScore";
 
 const useGameEnd = () => {
   const {
@@ -21,9 +19,6 @@ const useGameEnd = () => {
     setNumberOfWords,
     calculateResults,
   } = useWordsStore();
-
-  const { authUser } = useAuthContext();
-  const { insertScore } = useSaveScore();
 
   /* ------------------ LOGICA DEL TIMER Y DEL ESTADO ----------------------------- */
 

@@ -232,8 +232,9 @@ export const useWordsStore = create((set, get) => ({
 
       const timeResult = get().timeSelected;
       get().setErrors(calculateErrors(get().typed, get().words));
-      const acc = calculateAccuracy(typed, get().errors);
-      set({ kps, wpm, timeResult, acc });
+
+      const accuracy = calculateAccuracy(typed, get().errors);
+      set({ kps, wpm, timeResult, accuracy });
     }
 
     insertScore({

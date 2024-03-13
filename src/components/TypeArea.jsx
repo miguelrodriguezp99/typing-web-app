@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import Timer from "./Timer";
 import RandomWords from "./RandomWords";
 import UserWords from "./UserWords";
@@ -6,45 +5,24 @@ import BlurEffect from "./BlurEffect";
 import { useWordsStore } from "../store/useWords";
 import "./../styles/blur.css";
 
-const TypeArea = () => {
-  const { actualState, typed, setTypedInput } = useWordsStore();
-  const inputRef = useRef(null);
-  const handleDivClick = () => {
-    if (inputRef?.current !== null) inputRef.current?.focus(); // Enfoca el campo de entrada para abrir el teclado
-  };
-
-  const handleWrite = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-    setTypedInput(e.target.value);
-  };
+const TypeArea = ({ inputRef }) => {
+  const { actualState } = useWordsStore();
 
   return (
     <>
-      <div
+      <section
         className={`
-          h-[calc(100vh-380px)] sm:h-[calc(100vh-378px)] sm:min-h-[300px]
-          mt-[50px] sm:mt-[75px] md:mt-[100px] 
-          animate-fade animate-once 
-          animate-duration-[800ms] animate-normal 
-          animate-fill-both ${actualState === "FINISHED" ? "hidden" : ""}`}
-        onClick={handleDivClick}
+          h-[calc(100vh-380px)] sm:h-[calc(100vh-378px)] sm:min-h-[300px] mt-[50px] sm:mt-[75px] md:mt-[100px] 
+          animate-fade animate-once animate-duration-[800ms] animate-normal animate-fill-both 
+          ${actualState === "FINISHED" ? "hidden" : ""}`}
       >
-        <input
-          type="text"
-          className="absolute opacity-5 h-[1px] w-[1px] left-[-10000px]"
-          ref={inputRef}
-          aria-hidden="false"
-          value={typed}
-          onChange={(e) => handleWrite(e)}
-        />
         <Timer />
         <WordsContainer>
           <RandomWords />
           <UserWords />
-          <BlurEffect />
+          <BlurEffect inputRef={inputRef} />
         </WordsContainer>
-      </div>
+      </section>
     </>
   );
 };
