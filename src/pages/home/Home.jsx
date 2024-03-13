@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useTyping from "./../../hooks/useTyping";
 import { useWordsStore } from "../../store/useWords";
 import Results from "./../../components/Results";
@@ -40,11 +40,18 @@ function App() {
 }
 
 export const BlurWrapper = ({ children }) => {
-  const { setFocusedTrue } = useWordsStore();
+  const { setFocusedTrue, setTypedInput, typed } = useWordsStore();
+  const inputRef = useRef(null);
 
   const handleSetFocusedTrue = (e) => {
     e.stopPropagation();
     setFocusedTrue();
+    if (inputRef?.current !== null) inputRef.current?.focus();
+  };
+
+  const handleWrite = (e) => {
+    e.preventDefault();
+    setTypedInput(e.target.value);
   };
 
   return (
@@ -56,6 +63,14 @@ export const BlurWrapper = ({ children }) => {
       /* h-[calc(100vh-236px)] sm:h-[calc(100vh-192px)] sm:min-h-[520px] " */
       onClick={(e) => handleSetFocusedTrue(e)}
     >
+      <input
+        type="text"
+        className="absolute opacity-5 h-[1px] w-[1px] left-[-10000px]"
+        ref={inputRef}
+        aria-hidden="false"
+        value={typed}
+        onChange={(e) => handleWrite(e)}
+      />
       {children}
     </section>
   );

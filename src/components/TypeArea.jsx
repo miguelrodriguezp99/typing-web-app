@@ -7,10 +7,16 @@ import { useWordsStore } from "../store/useWords";
 import "./../styles/blur.css";
 
 const TypeArea = () => {
-  const { actualState } = useWordsStore();
+  const { actualState, typed, setTypedInput } = useWordsStore();
   const inputRef = useRef(null);
   const handleDivClick = () => {
     if (inputRef?.current !== null) inputRef.current?.focus(); // Enfoca el campo de entrada para abrir el teclado
+  };
+
+  const handleWrite = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    setTypedInput(e.target.value);
   };
 
   return (
@@ -29,6 +35,8 @@ const TypeArea = () => {
           className="absolute opacity-5 h-[1px] w-[1px] left-[-10000px]"
           ref={inputRef}
           aria-hidden="false"
+          value={typed}
+          onChange={(e) => handleWrite(e)}
         />
         <Timer />
         <WordsContainer>

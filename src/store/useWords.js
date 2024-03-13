@@ -113,6 +113,10 @@ export const useWordsStore = create((set, get) => ({
     set({ typed: get().typed + typed });
   },
 
+  setTypedInput: (typed) => {
+    set({ typed: typed });
+  },
+
   //Elimniamos ultimo elemento del typed content
   deleteTyped: () => {
     set({ typed: get().typed.slice(0, -1) });
