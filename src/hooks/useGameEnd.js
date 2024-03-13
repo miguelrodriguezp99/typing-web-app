@@ -26,14 +26,14 @@ const useGameEnd = () => {
   /* ---- HAS FINISHED ---- */
   const hasFinished = useMemo(() => {
     if (gameMode === GAME_MODE.WORDS || gameMode === GAME_MODE.QUOTE) {
-      return cursor >= words?.length;
+      return typed.length >= words?.length;
     }
     if (gameMode === GAME_MODE.TIME) {
       return cursor >= words?.length || timeRemaining <= 0;
     }
     // Por defecto, consideramos que no ha terminado
     return false;
-  }, [cursor, words, gameMode, timeRemaining]);
+  }, [cursor, words, gameMode, timeRemaining, typed]);
 
   /* ---- GAME ENDS!! ------------------*/
   useEffect(() => {
