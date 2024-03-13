@@ -1,4 +1,3 @@
-import { toast } from "sonner";
 import { useWordsStore } from "../store/useWords";
 import { GAME_MODE } from "../utils/constants";
 

@@ -40,10 +40,10 @@ export const insertScore = async ({
     const data = await res.json();
 
     if (data.error) {
-      toast.error(data.error);
+      //toast.error(data.error);
       return;
     }
   } catch (error) {
-    toast.error("An error saving the score. Sorry!");
+    //toast.error("An error saving the score. Sorry!");
   }
 };
