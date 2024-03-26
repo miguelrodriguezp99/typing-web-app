@@ -2,38 +2,51 @@
 
 ![704shots_so](https://github.com/miguelrodriguezp99/typing-web-app/assets/72866796/5de5208d-13de-435b-bb7c-38633b4db33e)
 
-
-
 ## Introduction
 
-TypingPracticeApp is a responsive web application inspired by the renowned typing platform, MonkeyType. Developed for educational purposes, it offers a comprehensive environment for users to enhance their typing skills across various devices, including smartphones, tablets, and desktops. Featuring a dedicated server for user registration and login, the app provides a personalized typing experience with feedback on performance metrics such as speed and accuracy after each test.
+The TypingPracticeApp is a state-of-the-art responsive web application, originally inspired by the eminent MonkeyType platform. Crafted for educational purposes, it presents an enriched environment for users aiming to advance their typing proficiency. This application accommodates a wide array of devices, including smartphones, tablets, and desktops, ensuring a seamless user experience. It encompasses a dedicated server architecture for user account management, enabling a tailored typing practice with detailed feedback on performance metrics such as speed, accuracy, and more, after each test session.
 
-The initial version of this application was solely a frontend, and it was entirely developed by me. However, as mentioned before, it is based on the Monkeytype application. Here is the initial repository where I developed the frontend: [\[Frontend\]](https://github.com/miguelrodriguezp99/typing-web-frontend)
+The genesis of this application was as a frontend-exclusive project, personally developed by me. Despite its roots in the Monkeytype application, it has since evolved. You can explore the initial frontend development repository here: [\[Frontend\]](https://github.com/miguelrodriguezp99/typing-web-frontend)
 
 ## Features
 
-- **Responsive Design:** Crafted with mobile, tablet, and desktop users in mind, TypingPracticeApp ensures a seamless and adaptive experience on any device.
+- **Responsive Design:** The TypingPracticeApp is designed to provide an optimal experience across all device types, ensuring users enjoy a consistent and engaging practice environment.
 
-- **Customizable Typing Tests:** Tailor your practice sessions by selecting the desired number of words, accommodating a range of typing proficiency levels and goals.
+- **Customizable Typing Tests:** Users can personalize their typing tests by selecting their preferred number of words, catering to various skill levels and objectives.
 
-- **Post-Test Feedback:** After completing a test or when the timer runs out, the application provides feedback on your typing speed and accuracy. This post-test analysis helps identify areas of improvement and encourages progress by offering insights into your performance.
+- **Immediate Feedback:** Upon completing a test or when the allocated time expires, the app delivers comprehensive feedback on typing speed, accuracy, and other key metrics. This analysis is crucial for recognizing improvement areas and fostering progress through detailed performance insights.
 
-- **Countdown Timer:** Challenge yourself with a timed typing test, pushing you to enhance both your speed and accuracy under pressure.
+- **Countdown Timer:** A challenge mode with a countdown timer is available to simulate pressure, encouraging improvements in both speed and accuracy.
 
-- **User Account Management:** With a dedicated server handling registration and login, users can create personal accounts to save their progress and preferences for a more customized experience.
+- **User Account Management:** A robust server setup supports user registration and login, allowing for the preservation of progress and preferences, thereby offering a more personalized experience.
+
+- **Blur Effect:** Introducing a blur effect when the user clicks outside the application or along its edges, subtly indicating that the focus has shifted away from the typing area.
+
+- **User Registration and Activity Log:** The system now features comprehensive user account management, including registration and activity tracking, enhancing user engagement and personal progress monitoring.
+
+- **Neon Database Integration:** Leveraging Neon's cloud capabilities for a PostgreSQL database ensures scalable, secure data management and storage.
+
+- **JWT Token-Based Cookie Use:** Enhancing security and user permissions through the implementation of JWT tokens within cookies, providing a secure and efficient authentication system.
+
+- **Scoring System and Detailed Statistics:** Upon concluding a typing test, users are navigated to a new screen showcasing their performance statistics, including accuracy, words per minute (WPM), errors, and more, for a thorough analysis.
+
+- **Enhanced Typing Modes:** The application now offers diverse typing challenges, including special character integration, numeric typing tests, a quotation system, and a freeform 'Zen' mode for unrestricted practice.
+
+- **Multiple Themes and Sounds:** Users can now personalize their practice environment further by selecting from various themes that alter the application's color scheme and enabling or disabling keyboard sounds to suit their preferences.
 
 ## Getting Started
 
-To dive into TypingPracticeApp, visit [\[URL to the application\]](https://typing-web.vercel.app) from any device. There's no need for installation or setup. Begin your typing journey right away by setting up your account and choosing your challenge level.
+To embark on your TypingPracticeApp journey, access [\[Type Monkey\]](https://typing-web.vercel.app) from any compatible device. Immediate engagement is possible without any installation or setup requirements. Simply create your account and choose your initial challenge level to begin enhancing your typing skills.
 
 ## Built With
 
-- React - For building the user interface with a component-based architecture
-- Tailwind CSS - For styling and ensuring responsiveness with minimal effort
-- HTML - Structuring the web content
-- CSS - Providing additional styling options and fine-tuning the design
+- **React:** Employed for its efficient, component-based approach in developing the user interface.
+- **Tailwind CSS:** Utilized for its ability to streamline responsive design, ensuring a smooth user experience across all device sizes.
+- **HTML & CSS:** Fundamental technologies for structuring web content and enhancing visual appeal through detailed styling.
 
 ## Acknowledgments
 
-- A nod to MonkeyType for the inspiration behind this project, showcasing the potential of focused practice tools.
-- Appreciation for the open-source community, whose resources have been invaluable in the development of this application.
+- **Inspiration from MonkeyType:** This project owes its conceptual foundation to MonkeyType, a testament to the effectiveness of dedicated practice tools.
+- **The Open-Source Community:** Our development has greatly benefited from the vast array of resources and support available within the open-source ecosystem, a factor we deeply appreciate.
+
+This documentation encompasses all the newly incorporated features, presented in a refined and formal manner, aligning with the project's evolution.
